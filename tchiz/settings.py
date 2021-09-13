@@ -86,7 +86,7 @@ if DEVELOPMENT_MODE:
     DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'tchizDB',
+        'NAME': 'tchizdb',
         'USER': 'beyassine',
         'PASSWORD': 'vivoperte1992',
         'HOST': 'localhost',
