@@ -177,9 +177,9 @@
             setTimeout(function(){    
               var resizedCanvas = document.createElement("canvas");
               var resizedContext = resizedCanvas.getContext("2d");              
-              resizedCanvas.height = "100";
-              resizedCanvas.width = "100";              
-              resizedContext.drawImage(canvas, 0, 0, 100, 100);
+              resizedCanvas.height = "1000";
+              resizedCanvas.width = "1000";              
+              resizedContext.drawImage(canvas, 0, 0, 1000, 1000);
               croppedImage.src = resizedCanvas.toDataURL("image/png");
                 
               
