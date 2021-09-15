@@ -149,10 +149,6 @@
     return false;
   });
 
-  // Initiate the venobox plugin
-  $(window).on('load', function() {
-    $('.venobox').venobox();
-  });
 
   // jQuery counterUp
   $('[data-toggle="counter-up"]').counterUp({
@@ -160,30 +156,5 @@
     time: 1000
   });
 
-  // Initiate venobox lightbox
-  $(document).ready(function() {
-    $('.venobox').venobox();
-  });
-
-  // Testimonials carousel (uses the Owl Carousel library)
-  $(".testimonials-carousel").owlCarousel({
-    autoplay: true,
-    dots: true,
-    loop: true,
-    items: 1
-  });
-
-  // Init AOS
-  function aos_init() {
-    AOS.init({
-      duration: 1000,
-      easing: "ease-in-out",
-      once: true,
-      mirror: false
-    });
-  }
-  $(window).on('load', function() {
-    aos_init();
-  });
 
 })(jQuery);
