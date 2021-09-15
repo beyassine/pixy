@@ -168,6 +168,8 @@
           zoomOnWheel: true,
           cropBoxMovable: true,
           wheelZoomRatio: 0.1,
+          maxWidth: 4096,
+          maxHeight: 4096,
           ready: function () {
             //Should set crop box data first here
             cropper.setCropBoxData(cropBoxData).setCanvasData(canvasData);
