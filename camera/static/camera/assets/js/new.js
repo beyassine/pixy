@@ -184,14 +184,7 @@
                 croppedImage.src = resizedCanvas.toDataURL("image/png"); 
                 }else{
                   croppedImage.src = canvas.toDataURL("image/png"); 
-                }
-
-
-              
-                
-              
-
-          
+                }          
           }, 1500);
             
           },

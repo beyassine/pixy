@@ -175,9 +175,20 @@
             //Should set crop box data first here
             cropper.setCropBoxData(cropBoxData).setCanvasData(canvasData);
           },
-          crop: function (event) {
+          cropend: function (event) {
             const canvas = this.cropper.getCroppedCanvas();
-            croppedImage.src = canvas.toDataURL("image/png");
+            setTimeout(function(){    
+              if($(window).width < 768 && ($(image).height() > 1000 || $(image).width() > 1000)){
+                var resizedCanvas = document.createElement("canvas");
+                var resizedContext = resizedCanvas.getContext("2d");              
+                resizedCanvas.height = "1000";
+                resizedCanvas.width = "1000";              
+                resizedContext.drawImage(canvas, 0, 0, 1000, 1000);
+                croppedImage.src = resizedCanvas.toDataURL("image/png"); 
+                }else{
+                  croppedImage.src = canvas.toDataURL("image/png"); 
+                }          
+          }, 1500);
           },
         });
         var cropper = $image.data("cropper");
