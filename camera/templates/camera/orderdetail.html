@@ -49,7 +49,7 @@
                 {% for image in images %}
                 <tr>
                   <td>
-                  <img src="{{image.image_url}}" height="200" width="200">
+                  <img src="{{image.image_url}}" >
                   <a href="{% url 'downloadimage' image.id %}" target="_blank" class="btn btn-info" >Télécharger</a>
                   </td> 
                 </tr>

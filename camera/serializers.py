@@ -69,3 +69,9 @@ class CommandeSerializer(serializers.ModelSerializer):
     class Meta:
         model = Commande
         fields = '__all__'
+
+class PanierSerializer(serializers.ModelSerializer):
+   
+    class Meta:
+        model = Panier
+        fields = '__all__'

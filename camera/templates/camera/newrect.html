@@ -1,3 +1,4 @@
+
 {% extends "camera/base.html"%} 
 {% load static %}
  {% block head %}
@@ -57,9 +58,14 @@
 
   .btn-xl {
     padding: 10px 20px;
-    font-size: 20px;
+    font-size: 25px;
     border-radius: 10px;
     width: 50%;
+  }
+  .btn-l{
+    padding: 5px 10px;
+    font-size: 25px;
+    border-radius: 10px;
   }
 </style>
 
@@ -69,7 +75,7 @@
 <section class="breadcrumbs">
   <div class="container">
     <div class="d-flex justify-content-between align-items-center">
-      <h2>PHOTOS</h2>
+      <h2>Box Photos Réctangulaires (10cm x 7cm)</h2>
     </div>
   </div>
 </section>
@@ -153,9 +159,17 @@
           <div id="imgcontainer"></div>
           <div class="row mt-3">
             <div class="col text-center">
-              <button type="button" class="btn btn-success border border-secondary" data-dismiss="modal" aria-label="Close" >
+              <a type="button" class="btn btn-light border border-secondary btn-l" id="rotatel" >               
+                <span aria-hidden="true" ><i class='bx bx-rotate-left'></i></span>
+              </a>
+              <a type="button" class="btn btn-light border border-secondary btn-l" id="rotater" >               
+                <span aria-hidden="true" ><i class='bx bx-rotate-right'></i></span>
+              </a>
+              <hr>
+              <button type="button" class="btn btn-success border border-secondary btn-l" data-dismiss="modal" aria-label="Close" >
                 <span aria-hidden="true"><i class="fas fa-check"></i></span>
               </button>
+              
             </div>
           </div>
         </div>
@@ -163,7 +177,6 @@
     </div>
   </div>
 </div>
-
 <div class="modal" id='uploadModal' data-keyboard="false"  data-backdrop="static" tabindex="-1" role="dialog">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -175,7 +188,7 @@
 </div>
 {% endblock content %} 
 {% block foot %}
-<script src="{% static 'camera/assets/js/new.js'%}"></script>
+<script src="{% static 'camera/assets/js/newrect.js'%}"></script>
 
 
 {% endblock foot %}

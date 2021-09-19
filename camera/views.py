@@ -74,20 +74,34 @@ def updatecommande(request,pk):
 def home(request):
     return render(request, 'camera/home.html')
 
-def new(request):
-    return render(request, 'camera/new.html')
+def produit(request):
+    return render(request,'camera/produit.html')
 
+def newsquare(request):
+    return render(request, 'camera/newsquare.html')
+
+def addsquare(request,pk):
+    order=Commande.objects.get(id=pk)
+    return render(request,'camera/addsquare.html',{'order_id':order.id,'nbre':order.nbre,'prix':order.prix})
+
+def newrect(request):
+    return render(request, 'camera/newrect.html')
+
+def addrect(request,pk):
+    order=Commande.objects.get(id=pk)
+    return render(request,'camera/addrect.html',{'order_id':order.id,'nbre':order.nbre,'prix':order.prix})
+
+def newbig(request):
+    return render(request, 'camera/newbig.html')
+
+def addbig(request,pk):
+    order=Commande.objects.get(id=pk)
+    return render(request,'camera/addbig.html',{'order_id':order.id,'nbre':order.nbre,'prix':order.prix})
 
 def commande(request,pk):
     order=Commande.objects.get(id=pk)
-    if order.complete == False:
-        return render(request,'camera/order.html',{'order_id':order.id,'nbre':order.nbre,'prix':order.prix})
-    else:
-        return redirect('home')
+    return render(request,'camera/order.html',{'order_id':order.id,'nbre':order.nbre,'prix':order.prix})
 
-def addcommande(request,pk):
-    order=Commande.objects.get(id=pk)
-    return render(request,'camera/addcommande.html',{'order_id':order.id,'nbre':order.nbre,'prix':order.prix})
 
 def adminhome(request):
     orders=Commande.objects.all().order_by('-id')

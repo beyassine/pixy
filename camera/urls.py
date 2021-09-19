@@ -12,9 +12,14 @@ urlpatterns = [
 
     # VIEWS
     path('', views.home, name="home"),
-    path('nouveau', views.new, name="new"),
-    path('<int:pk>/commande/', views.commande, name="order"),
-    path('<int:pk>/ajouter/', views.addcommande, name="addorder"),
+    path('produit', views.produit, name="produit"),
+    path('nouveaucarre', views.newsquare, name="newsquare"),
+    path('<int:pk>/ajoutercarre/', views.addsquare, name="addsquare"),
+    path('nouveaurect', views.newrect, name="newrect"),
+    path('<int:pk>/ajouterrect', views.addrect, name="addrect"),
+    path('nouveaugrand', views.newbig, name="newbig"),
+    path('<int:pk>/ajoutergrand', views.addbig, name="addbig"),
+    path('<int:pk>/commande/', views.commande, name="order"),    
     path('administrateur/', views.adminhome, name="adminhome"),    
     path('administrateur/<int:pk>/commande/', views.orderdetail, name="adminorder"),
     path('administrateur/<int:pk>/downloadimage/', views.downloadimage, name="downloadimage"),

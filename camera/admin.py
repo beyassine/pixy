@@ -4,3 +4,4 @@ from .models import *
 admin.site.register(User)
 admin.site.register(Photo)
 admin.site.register(Commande)
+admin.site.register(Panier)

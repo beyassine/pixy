@@ -1,7 +1,4 @@
 
-  const order_id = JSON.parse(document.getElementById('order_id').textContent); 
-  const nbre = JSON.parse(document.getElementById('nbre').textContent); 
-  const prix = JSON.parse(document.getElementById('prix').textContent); 
   const imgcontainer = document.getElementById("imgcontainer");
   const csrf = document.getElementsByName("csrfmiddlewaretoken");
   var num_input = 0;
@@ -102,15 +99,17 @@
         uploadImage(6, url);
       } 
     });
+    
+    $( "#rotatel" ).click(function() {
+      $('#modalimage').cropper('rotate', -90);
+    });
+
+    $( "#rotater" ).click(function() {
+      $('#modalimage').cropper('rotate', 90);
+    });
+
+    
   });
-
-  function addinput(){
-    num_input += 1
-    if(num_input == 6){
-      $('#confirm_btn').removeClass('disabled')
-
-    }
-  }
 
   
   function showmodal(p) {
@@ -120,6 +119,14 @@
     editImage(p, src);
   }
 
+  function addinput(){
+    num_input += 1
+    if(num_input == 6){
+      $('#confirm_btn').removeClass('disabled')
+
+    }
+  }
+
   function uploadImage(p, url) {
     var imagebox = document.getElementById(`imagebox_${p}`);
     var croppedImage = document.getElementById(`imgcropped_${p}`);
@@ -127,7 +134,7 @@
     var image = document.getElementById(`image_${p}`);
     var $image = $(`#image_${p}`);
     $image.cropper({
-      aspectRatio: 9 / 9,
+      aspectRatio: 16 / 9,
       cropBoxResizable: false,
       crop: function (event) {
         const canvas = this.cropper.getCroppedCanvas();
@@ -160,7 +167,7 @@
     $("#modal")
       .on("shown.bs.modal", function () {
         $image.cropper({
-          aspectRatio: 9 / 9,
+          aspectRatio: 16 / 9,
           cropBoxResizable: false,
           viewMode: 1,
           center: true,
@@ -175,7 +182,7 @@
             //Should set crop box data first here
             cropper.setCropBoxData(cropBoxData).setCanvasData(canvasData);
           },
-          cropend: function (event) {
+          crop: function (event) {
             const canvas = this.cropper.getCroppedCanvas();
             setTimeout(function(){    
               if($(window).width < 768 && ($(image).height() > 1000 || $(image).width() > 1000)){
@@ -188,8 +195,10 @@
                 }else{
                   croppedImage.src = canvas.toDataURL("image/png"); 
                 }          
-          }, 1500);
+          }, 1100);
+            
           },
+
         });
         var cropper = $image.data("cropper");
       })
@@ -199,13 +208,29 @@
   }
 
   function confirm() {
-    if (num_input == 6) { 
-        
+    if (num_input == 6) {
+      var fd1={
+        "csrfmiddlewaretoken": csrf[0].value,
+        'nom':'',
+        'tel':'',
+        'adresse':'',
+        'ville':'',
+        'nbre':6,
+        'prix':90,
+      }
+      $('#uploadModal').modal('show')
+      $.ajax({
+          type: "POST",
+          url: "http://127.0.0.1:8000/api/createcommande/",
+          enctype: "multipart/form-data",
+          data: fd1,
+          success: function (response) {
+            var id = response['id']
             fd = new FormData();
             for (let i = 1; i < 7; i++) {
               const fd = new FormData();
               fd.append("csrfmiddlewaretoken", csrf[0].value);
-              fd.append("commande", order_id);
+              fd.append("commande", id);
               fd.append("image", $(`#imgcropped_${i}`).attr("src"));
               $.ajax({
                 type: "POST",
@@ -214,29 +239,17 @@
                 data: fd,
                 success: function (response) {
                   if ( i == 6){
-                    nbrep=parseInt(nbre)+6
-                    prixp=parseInt(prix)+40
-                      var url=`http://127.0.0.1:8000/api/${order_id}/updatecommande/`
-                        fetch(url, {
-                        method:'POST',
-                        headers:{
-                          'Content-type':'application/json',
-                          'X-CSRFToken':csrf[0].value,
-                        },
-                        body:JSON.stringify({'nbre':nbrep,'prix':prixp})
-                      }
-                      ).then(function(response){     
-                        window.location.href=`http://127.0.0.1:8000/${order_id}/commande/`  
-                      })
-                    
+                    window.location.href=`http://127.0.0.1:8000/${id}/commande/`
                     }
                 },
                 cache: false,
                 contentType: false,
                 processData: false,
               });
-            }      
+            }
+          }
+      })      
     }else(
-      alert('Complétez 6 photos pour passer la commande !')
+      alert('Complétez 6 photos pour continuer !')
     )
   }

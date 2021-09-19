@@ -200,10 +200,7 @@
     if (num_input == 6) {
       var fd1={
         "csrfmiddlewaretoken": csrf[0].value,
-        'nom':'',
-        'tel':'',
-        'adresse':'',
-        'ville':'',
+        "typec":'magnet carre',
         'nbre':6,
         'prix':60,
       }
@@ -239,6 +236,6 @@
           }
       })      
     }else(
-      alert('Complétez 6 photos pour passer la commande !')
+      alert('Complétez 6 photos pour continuer !')
     )
   }
