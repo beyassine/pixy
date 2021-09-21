@@ -316,19 +316,21 @@
           crop: function (event) {
             const canvas = this.cropper.getCroppedCanvas();
             setTimeout(function(){    
-              if($(window).width < 768 && ($(image).height() > 1024 || $(image).width() > 1024)){
+              if($(window).width < 768 ){
                 var resizedCanvas = document.createElement("canvas");
                 var resizedContext = resizedCanvas.getContext("2d");
                 if (r == 2/3){
                   resizedCanvas.height = "1024";
                   resizedCanvas.width = "717";   
                   resizedContext.drawImage(canvas, 0, 0, 717, 1024);
+                  croppedImage.src = resizedCanvas.toDataURL("image/png"); 
                 }else{
                   resizedCanvas.height = "717";
                   resizedCanvas.width = "1024";   
                   resizedContext.drawImage(canvas, 0, 0, 1024, 717);
+                  croppedImage.src = resizedCanvas.toDataURL("image/png"); 
                 }               
-                croppedImage.src = resizedCanvas.toDataURL("image/png"); 
+                
                 }else{
                   croppedImage.src = canvas.toDataURL("image/png"); 
                 }          
