@@ -178,11 +178,11 @@
           cropend: function (event) {
             const canvas = this.cropper.getCroppedCanvas();
             setTimeout(function(){    
-              if($(window).width < 768 && ($(image).height() > 1000 || $(image).width() > 1000)){
+              if($(window).width < 768 && ($(image).height() > 1024 || $(image).width() > 1024)){
                 var resizedCanvas = document.createElement("canvas");
                 var resizedContext = resizedCanvas.getContext("2d");              
-                resizedCanvas.height = "1000";
-                resizedCanvas.width = "1000";              
+                resizedCanvas.height = "1024";
+                resizedCanvas.width = "1024";              
                 resizedContext.drawImage(canvas, 0, 0, 1000, 1000);
                 croppedImage.src = resizedCanvas.toDataURL("image/png"); 
                 }else{

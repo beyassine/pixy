@@ -1,4 +1,3 @@
-
 {% extends "camera/base.html"%} 
 {% load static %}
  {% block head %}
@@ -142,7 +141,7 @@
         <div class="row">
           <div class="col text-center">
             <button class="btn btn-success btn-xl mt-5 disabled" id="confirm_btn" onclick="confirm()">
-              <strong>CONTINUER &rarr;</strong>
+              <strong>CONTINUER</strong>
             </button>
           </div>
         </div>
@@ -159,17 +158,9 @@
           <div id="imgcontainer"></div>
           <div class="row mt-3">
             <div class="col text-center">
-              <a type="button" class="btn btn-light border border-secondary btn-l" id="rotatel" >               
-                <span aria-hidden="true" ><i class='bx bx-rotate-left'></i></span>
-              </a>
-              <a type="button" class="btn btn-light border border-secondary btn-l" id="rotater" >               
-                <span aria-hidden="true" ><i class='bx bx-rotate-right'></i></span>
-              </a>
-              <hr>
               <button type="button" class="btn btn-success border border-secondary btn-l" data-dismiss="modal" aria-label="Close" >
                 <span aria-hidden="true"><i class="fas fa-check"></i></span>
               </button>
-              
             </div>
           </div>
         </div>
@@ -177,6 +168,7 @@
     </div>
   </div>
 </div>
+
 <div class="modal" id='uploadModal' data-keyboard="false"  data-backdrop="static" tabindex="-1" role="dialog">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -188,7 +180,7 @@
 </div>
 {% endblock content %} 
 {% block foot %}
-<script src="{% static 'camera/assets/js/newbig.js'%}"></script>
+<script src="{% static 'camera/assets/js/newsquare.js'%}"></script>
 
 
 {% endblock foot %}

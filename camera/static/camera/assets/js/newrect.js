@@ -1,12 +1,13 @@
-
   const imgcontainer = document.getElementById("imgcontainer");
   const csrf = document.getElementsByName("csrfmiddlewaretoken");
   var num_input = 0;
 
   window.addEventListener("DOMContentLoaded", function () {
     var input_1 = document.getElementById("input_1");
-    input_1.addEventListener("change", function () {                  
+    input_1.addEventListener("change", function () {    
+
       img_data = input_1.files[0];
+
       if (img_data.size > 5242880){
         alert('Fichier Trop Volumineux !')
         input_1.value=null
@@ -14,9 +15,32 @@
         if (!$(this).hasClass("changed")) {
           addinput()
         $(this).addClass("changed");
-        }        
+        }   
         url = URL.createObjectURL(img_data);
-        uploadImage(1, url);
+        var reader = new FileReader();
+
+        //Read the contents of Image File.
+        reader.readAsDataURL(input_1.files[0]);
+        reader.onload = function (e) {
+
+        //Initiate the JavaScript Image object.
+        var image = new Image();
+
+        //Set the Base64 string return from FileReader as source.
+        image.src = e.target.result;
+
+        //Validate the File Height and Width.
+        image.onload = function () {
+          var height = this.height;
+          var width = this.width;
+          if (height > width) {
+            uploadImage(1, url,2/3);
+          }else{
+            uploadImage(1, url,16/9);
+          }
+        } 
+        
+      };       
       }      
     });
 
@@ -30,9 +54,32 @@
         if (!$(this).hasClass("changed")) {
           addinput()
         $(this).addClass("changed");
-        }        
+        }   
         url = URL.createObjectURL(img_data);
-        uploadImage(2, url);
+        var reader = new FileReader();
+
+        //Read the contents of Image File.
+        reader.readAsDataURL(input_2.files[0]);
+        reader.onload = function (e) {
+
+        //Initiate the JavaScript Image object.
+        var image = new Image();
+
+        //Set the Base64 string return from FileReader as source.
+        image.src = e.target.result;
+
+        //Validate the File Height and Width.
+        image.onload = function () {
+          var height = this.height;
+          var width = this.width;
+          if (height > width) {
+            uploadImage(2, url,2/3);
+          }else{
+            uploadImage(2, url,16/9);
+          }
+        } 
+        
+      }; 
       } 
     });
 
@@ -46,9 +93,32 @@
         if (!$(this).hasClass("changed")) {
           addinput()
         $(this).addClass("changed");
-        }      
+        }   
         url = URL.createObjectURL(img_data);
-        uploadImage(3, url);
+        var reader = new FileReader();
+
+        //Read the contents of Image File.
+        reader.readAsDataURL(input_3.files[0]);
+        reader.onload = function (e) {
+
+        //Initiate the JavaScript Image object.
+        var image = new Image();
+
+        //Set the Base64 string return from FileReader as source.
+        image.src = e.target.result;
+
+        //Validate the File Height and Width.
+        image.onload = function () {
+          var height = this.height;
+          var width = this.width;
+          if (height > width) {
+            uploadImage(3, url,2/3);
+          }else{
+            uploadImage(3, url,16/9);
+          }
+        } 
+        
+      }; 
       } 
     });
 
@@ -62,9 +132,32 @@
         if (!$(this).hasClass("changed")) {
           addinput()
         $(this).addClass("changed");
-        }        
+        }   
         url = URL.createObjectURL(img_data);
-        uploadImage(4, url);
+        var reader = new FileReader();
+
+        //Read the contents of Image File.
+        reader.readAsDataURL(input_4.files[0]);
+        reader.onload = function (e) {
+
+        //Initiate the JavaScript Image object.
+        var image = new Image();
+
+        //Set the Base64 string return from FileReader as source.
+        image.src = e.target.result;
+
+        //Validate the File Height and Width.
+        image.onload = function () {
+          var height = this.height;
+          var width = this.width;
+          if (height > width) {
+            uploadImage(4, url,2/3);
+          }else{
+            uploadImage(4, url,16/9);
+          }
+        } 
+        
+      }; 
       } 
     });
 
@@ -78,9 +171,32 @@
         if (!$(this).hasClass("changed")) {
           addinput()
         $(this).addClass("changed");
-        }
+        }   
         url = URL.createObjectURL(img_data);
-        uploadImage(5, url);
+        var reader = new FileReader();
+
+        //Read the contents of Image File.
+        reader.readAsDataURL(input_5.files[0]);
+        reader.onload = function (e) {
+
+        //Initiate the JavaScript Image object.
+        var image = new Image();
+
+        //Set the Base64 string return from FileReader as source.
+        image.src = e.target.result;
+
+        //Validate the File Height and Width.
+        image.onload = function () {
+          var height = this.height;
+          var width = this.width;
+          if (height > width) {
+            uploadImage(5, url,2/3);
+          }else{
+            uploadImage(5, url,16/9);
+          }
+        } 
+        
+      }; 
         } 
     });
 
@@ -91,32 +207,46 @@
         alert('Fichier Trop Volumineux !')
         input_6.value=null
       }else{
+        
         if (!$(this).hasClass("changed")) {
           addinput()
         $(this).addClass("changed");
-        }        
+        }   
         url = URL.createObjectURL(img_data);
-        uploadImage(6, url);
+        var reader = new FileReader();
+
+        //Read the contents of Image File.
+        reader.readAsDataURL(input_2.files[0]);
+        reader.onload = function (e) {
+
+        //Initiate the JavaScript Image object.
+        var image = new Image();
+
+        //Set the Base64 string return from FileReader as source.
+        image.src = e.target.result;
+
+        //Validate the File Height and Width.
+        image.onload = function () {
+          var height = this.height;
+          var width = this.width;
+          if (height > width) {
+            uploadImage(6, url,2/3);
+          }else{
+            uploadImage(6, url,16/9);
+          }
+        } 
+        
+      }; 
       } 
     });
-    
-    $( "#rotatel" ).click(function() {
-      $('#modalimage').cropper('rotate', -90);
-    });
-
-    $( "#rotater" ).click(function() {
-      $('#modalimage').cropper('rotate', 90);
-    });
-
-    
   });
 
   
-  function showmodal(p) {
+  function showmodal(p,r) {
     var src = $(`#image_${p}`).attr("src");
     imgcontainer.innerHTML =
       '<img id="modalimage" src="" alt="Picture" style="max-width: 100%">';
-    editImage(p, src);
+    editImage(p, src,r);
   }
 
   function addinput(){
@@ -127,14 +257,14 @@
     }
   }
 
-  function uploadImage(p, url) {
+  function uploadImage(p, url,r) {
     var imagebox = document.getElementById(`imagebox_${p}`);
     var croppedImage = document.getElementById(`imgcropped_${p}`);
-    imagebox.innerHTML = `<img src="${url}" id="image_${p}"  class="imgsrc img-fluid" alt="Responsive image">`;
+    imagebox.innerHTML = `<img src="${url}" id="image_${p}" class="imgsrc img-fluid" alt="Responsive image">`;
     var image = document.getElementById(`image_${p}`);
     var $image = $(`#image_${p}`);
     $image.cropper({
-      aspectRatio: 16 / 9,
+      aspectRatio: r,
       cropBoxResizable: false,
       crop: function (event) {
         const canvas = this.cropper.getCroppedCanvas();
@@ -152,10 +282,10 @@
     var cropper = $image.data("cropper");
     var btngrp = document.getElementById(`btngrp_${p}`);
     btngrp.innerHTML = `<button class="btn btn1" name="edit" class="btn btn-sm btn-outline-secondary shadow-lg" data-id='${p}'
-      data-target="#modal" data-toggle="modal" onclick="showmodal(${p})"><i class="fas fa-crop-alt fa-2x"></i></button>`;
+      data-target="#modal" data-toggle="modal" onclick="showmodal(${p},${r})"><i class="fas fa-crop-alt fa-2x"></i></button>`;
   }
 
-  function editImage(p, src) {
+  function editImage(p, src,r) {
     var imgcontainer = document.getElementById("imgcontainer");
     var image = document.getElementById("imagemodal");
     var cropBoxData;
@@ -166,8 +296,9 @@
     var $image = $("#modalimage");
     $("#modal")
       .on("shown.bs.modal", function () {
+        
         $image.cropper({
-          aspectRatio: 16 / 9,
+          aspectRatio: r,
           cropBoxResizable: false,
           viewMode: 1,
           center: true,
@@ -185,12 +316,18 @@
           crop: function (event) {
             const canvas = this.cropper.getCroppedCanvas();
             setTimeout(function(){    
-              if($(window).width < 768 && ($(image).height() > 1000 || $(image).width() > 1000)){
+              if($(window).width < 768 && ($(image).height() > 1024 || $(image).width() > 1024)){
                 var resizedCanvas = document.createElement("canvas");
-                var resizedContext = resizedCanvas.getContext("2d");              
-                resizedCanvas.height = "1000";
-                resizedCanvas.width = "1000";              
-                resizedContext.drawImage(canvas, 0, 0, 1000, 1000);
+                var resizedContext = resizedCanvas.getContext("2d");
+                if (r == 2/3){
+                  resizedCanvas.height = "1024";
+                  resizedCanvas.width = "717";   
+                  resizedContext.drawImage(canvas, 0, 0, 717, 1024);
+                }else{
+                  resizedCanvas.height = "717";
+                  resizedCanvas.width = "1024";   
+                  resizedContext.drawImage(canvas, 0, 0, 1024, 717);
+                }               
                 croppedImage.src = resizedCanvas.toDataURL("image/png"); 
                 }else{
                   croppedImage.src = canvas.toDataURL("image/png"); 
