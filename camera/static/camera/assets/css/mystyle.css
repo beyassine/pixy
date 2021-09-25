@@ -1,0 +1,85 @@
+.mytitle{
+    color: rgba(1, 4, 136, 0.9);
+  }
+  
+ .btn-go {
+   background-color: rgba(1, 4, 136, 0.9); ;
+   padding: 5px 10px;
+   font-size: 20px;
+   border-radius: 10px;
+   width: 100%;
+   color: white;
+   
+ }
+ .btn-go:hover {
+ color: white;
+}
+
+
+.input-div {
+    border-style: dashed;
+    border: 2px dashed grey;
+    border-radius: 20px;
+    background-color: rgb(252, 252, 252);
+
+    margin: 10px;
+    vertical-align: auto;
+  }
+
+  .btn1 {
+    border: 1px solid black;
+    background-color: rgb(252, 252, 252);
+    position: absolute;
+    z-index: 1;
+    top: 5%;
+    right: 7%;
+  }
+  .btn2 {
+    position: absolute;
+    z-index: 1;
+    top: 28%;
+    right: 7%;
+  }
+  .file_upload {
+    opacity: 0;
+
+    /* IE 8 */
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+
+    /* IE 5-7 */
+    filter: alpha(opacity=0);
+
+    /* Netscape or and older firefox browsers */
+    -moz-opacity: 0;
+
+    /* older Safari browsers */
+    -khtml-opacity: 0;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .btn-xl {
+    padding: 10px 20px;
+    font-size: 25px;
+    border-radius: 20px;
+    width: 100%;
+  }
+
+  .btn-l{
+    padding: 5px 10px;
+    font-size: 25px;
+    border-radius: 10px;
+  }
+
+  .btn-lg{
+    padding: 10px 20px;
+    font-size: 15px;
+    border-radius: 10px;
+    width: 100%;
+  }

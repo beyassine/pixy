@@ -3,79 +3,15 @@
 {% load static %}
  {% block head %}
 
-<style>
-  .input-div {
-    border-style: dashed;
-    border: 2px dashed grey;
-    border-radius: 20px;
-    background-color: rgb(252, 252, 252);
+{% endblock head %}
 
-    margin: 10px;
-    vertical-align: auto;
-  }
-
-  .card {
-    border: none;
-    margin: 3px;
-  }
-  .btn1 {
-    border: 1px solid black;
-    background-color: rgb(252, 252, 252);
-    position: absolute;
-    z-index: 1;
-    top: 5%;
-    right: 7%;
-  }
-  .btn2 {
-    position: absolute;
-    z-index: 1;
-    top: 28%;
-    right: 7%;
-  }
-  .file_upload {
-    opacity: 0;
-
-    /* IE 8 */
-    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
-
-    /* IE 5-7 */
-    filter: alpha(opacity=0);
-
-    /* Netscape or and older firefox browsers */
-    -moz-opacity: 0;
-
-    /* older Safari browsers */
-    -khtml-opacity: 0;
-
-    position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    width: 100%;
-    height: 100%;
-  }
-
-  .btn-xl {
-    padding: 10px 20px;
-    font-size: 25px;
-    border-radius: 10px;
-    width: 50%;
-  }
-  .btn-l{
-    padding: 5px 10px;
-    font-size: 25px;
-    border-radius: 10px;
-  }
-</style>
-
-{% endblock head %} {% block content %}
+{% block content %}
 
 <!-- ======= Breadcrumbs Section ======= -->
 <section class="breadcrumbs">
   <div class="container">
     <div class="d-flex justify-content-between align-items-center">
-      <h2>Box Photos Réctangulaires (10cm x 7cm)</h2>
+      <h2>Boite Photos Réctangulaires (10cm x 7cm)</h2>
     </div>
   </div>
 </section>
@@ -91,48 +27,42 @@
     <div class="row no-gutters">
       {% csrf_token %}
       <div class="col-lg-4 col-md-4 border-0">
-        <div id="imagebox_1" style="display: none"></div>
-        <div class="card">
+        <div class="card"  style="border: none;margin: 3px;">
           <div id="btngrp_1"></div>          
           <input class="file_upload" type="file" id="input_1" accept="image/png, image/gif, image/jpeg" />
           <img id="imgcropped_1" src="{% static 'camera/assets/img/void.png'%}" style="border-radius: 7%; border: 2px solid grey" class="card-img-top shadow" />
         </div>
       </div>
       <div class="col-lg-4 col-md-4 border-0">
-        <div id="imagebox_2" style="display: none"></div>
-        <div class="card">
+        <div class="card"  style="border: none;margin: 3px;">
           <div id="btngrp_2"></div>
           <input class="file_upload" type="file" id="input_2" accept="image/png, image/gif, image/jpeg" />
           <img id="imgcropped_2" src="{% static 'camera/assets/img/void.png'%}" style="border-radius: 7%; border: 2px solid grey" class="card-img-top shadow" />
         </div>
       </div>
       <div class="col-lg-4 col-md-4 border-0">
-        <div id="imagebox_3" style="display: none"></div>
-        <div class="card">
+        <div class="card"  style="border: none;margin: 3px;">
           <div id="btngrp_3"></div>
           <input class="file_upload" type="file" id="input_3" accept="image/png, image/gif, image/jpeg" />
           <img id="imgcropped_3" src="{% static 'camera/assets/img/void.png'%}" style="border-radius: 7%; border: 2px solid grey" class="card-img-top shadow" />
         </div>
       </div>
       <div class="col-lg-4 col-md-4 border-0">
-        <div id="imagebox_4" style="display: none"></div>
-        <div class="card">
+        <div class="card"  style="border: none;margin: 3px;">
           <div id="btngrp_4"></div>
           <input class="file_upload" type="file" id="input_4" accept="image/png, image/gif, image/jpeg" />
           <img id="imgcropped_4" src="{% static 'camera/assets/img/void.png'%}" style="border-radius: 7%; border: 2px solid grey" class="card-img-top shadow" />
         </div>
       </div>
       <div class="col-lg-4 col-md-4 border-0">
-        <div id="imagebox_5" style="display: none"></div>
-        <div class="card">
+        <div class="card"  style="border: none;margin: 3px;">
           <div id="btngrp_5"></div>
           <input class="file_upload" type="file" id="input_5" accept="image/png, image/gif, image/jpeg" />
           <img id="imgcropped_5" src="{% static 'camera/assets/img/void.png'%}" style="border-radius: 7%; border: 2px solid grey" class="card-img-top shadow" />
         </div>
       </div>
       <div class="col-lg-4 col-md-3 border-4">
-        <div id="imagebox_6" style="display: none"></div>
-        <div class="card">
+        <div class="card"  style="border: none;margin: 3px;">
           <div id="btngrp_6"></div>
           <input class="file_upload" type="file" id="input_6" accept="image/png, image/gif, image/jpeg" />
           <img id="imgcropped_6" src="{% static 'camera/assets/img/void.png'%}" style="border-radius: 7%; border: 2px solid grey" class="card-img-top shadow" />
@@ -151,30 +81,11 @@
   </div>
 </section>
 
-<div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true" >
-  <div class="modal-dialog" role="document">
-    <div class="modal-content border-0">
-      <div class="modal-body" style="background-color: grey">
-        <div id="modalBox">
-          <div id="imgcontainer"></div>
-          <div class="row mt-3">
-            <div class="col text-center">
-              <button type="button" class="btn btn-success border border-secondary btn-l" data-dismiss="modal" aria-label="Close" >
-                <span aria-hidden="true"><i class="fas fa-check"></i></span>
-              </button>
-              
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
 <div class="modal" id='uploadModal' data-keyboard="false"  data-backdrop="static" tabindex="-1" role="dialog">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-body">
-        <p> <img src="{% static 'camera/assets/img/img_icon.png' %}"> Vos images sont en cours de traitement ...</p>
+        <p  class="text-center"> <img src="{% static 'camera/assets/img/img_icon.png' %}"> <br> Vos images sont en cours de traitement ...</p>
       </div>
     </div>
   </div>

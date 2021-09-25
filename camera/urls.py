@@ -19,6 +19,7 @@ urlpatterns = [
     path('<int:pk>/ajouterrect', views.addrect, name="addrect"),
     path('nouveaugrand', views.newbig, name="newbig"),
     path('<int:pk>/ajoutergrand', views.addbig, name="addbig"),
+    path('<int:pk>/ajouter/', views.upsell, name="upsell"),    
     path('<int:pk>/commande/', views.commande, name="order"),    
     path('administrateur/', views.adminhome, name="adminhome"),    
     path('administrateur/<int:pk>/commande/', views.orderdetail, name="adminorder"),

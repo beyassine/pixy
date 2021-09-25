@@ -1,0 +1,66 @@
+{% extends "camera/base.html"%} 
+{% load static %} 
+
+
+{% block head %} 
+
+{% endblock head %} 
+
+
+{% block content %}
+
+      <div class="modal"  id="addModal" data-keyboard="false"  data-backdrop="static" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            {% if typec == 'Photos Carrées (5cm x 5cm)' %}
+            <div class="modal-body">                
+              <p class="text-center text-uppercase"> <img src="{% static 'camera/assets/img/discount.png' %}"><br>
+                AJOUTER 6 PHOTOS Carrées (5cm x 5cm) Á SEULEMENT <span class="text-danger h4" ><strong>40 DH</strong></span> 
+              </p>
+            </div>
+            <div class="modal-footer">
+              <a class="btn btn-warning btn-lg text-white" href="{% url 'addsquare' order_id %}">AJOUTER 6 PHOTOS </a>
+              <a class="btn btn-info btn-lg text-white mt-2 " href="{% url 'produit'%}">AJOUTER NOUVELLE BOITE </a><hr>
+              <a class="btn btn-secondary btn-lg text-white mt-4 " href="{% url 'produit'%}">CONTINUER VERS PANIER </a>
+            </div>
+            {% elif typec == 'Photos Réctangles (10cm x 7cm)' %}
+            <div class="modal-body">                
+                <p class="text-center text-uppercase"> <img src="{% static 'camera/assets/img/discount.png' %}"><br>
+                  AJOUTER 6 PHOTOS Réctangulaires (10cm x 7cm) Á SEULEMENT <span class="text-danger h4" ><strong>70 DH</strong></span> 
+                </p>
+              </div>
+              <div class="modal-footer">
+                <a class="btn btn-warning btn-lg text-white " href="{% url 'addrect' order_id %}">AJOUTER 6 PHOTOS </a>
+                <a class="btn btn-info btn-lg text-white mt-2 " href="{% url 'produit'%}">AJOUTER NOUVELLE BOITE </a><hr>
+                <a class="btn btn-secondary btn-lg text-white mt-4 " href="{% url 'produit'%}">CONTINUER VERS PANIER </a>
+              </div>
+              {% elif typec == 'Photos Grand Format (15cm x 10cm)' %}
+            <div class="modal-body">                
+                <p class="text-center text-uppercase"> <img src="{% static 'camera/assets/img/discount.png' %}"><br>
+                  AJOUTER 6 PHOTOS Photos Grand Format (15cm x 10cm) Á SEULEMENT <span class="text-danger h4" ><strong>100 DH</strong></span> 
+                </p>
+              </div>
+              <div class="modal-footer">
+                <a class="btn btn-warning btn-lg text-white " href="{% url 'addbig' order_id %}">AJOUTER 6 PHOTOS </a>
+                <a class="btn btn-info btn-lg text-white mt-2 " href="{% url 'produit'%}">AJOUTER NOUVELLE BOITE </a><hr>
+                <a class="btn btn-secondary btn-lg text-white mt-4 " href="{% url 'produit'%}">CONTINUER VERS PANIER </a>
+              </div>
+              {%endif%}
+
+            
+
+          </div>
+        </div>
+      </div>
+
+
+{% endblock content %} 
+
+{% block foot %} 
+<script>
+window.addEventListener("DOMContentLoaded", function () {
+  $('#addModal').modal('show')
+})
+</script>
+
+{% endblock foot%}

@@ -200,7 +200,7 @@
 
   function confirm() {
     if (num_input == 6) { 
-        
+            $('#uploadModal').modal('show')
             fd = new FormData();
             for (let i = 1; i < 7; i++) {
               const fd = new FormData();
@@ -226,7 +226,7 @@
                         body:JSON.stringify({'nbre':nbrep,'prix':prixp})
                       }
                       ).then(function(response){     
-                        window.location.href=`http://127.0.0.1:8000/${order_id}/commande/`  
+                        addCookieItem(order_id,6,40)
                       })
                     
                     }

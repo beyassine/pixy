@@ -1,25 +1,6 @@
 {% extends "camera/base.html"%} 
 {% load static %}
  {% block head %}
- <style>
-   .title{
-     color: rgba(1, 4, 136, 0.9);
-   }
-   
-  .btn-go {
-    background-color: rgba(1, 4, 136, 0.9); ;
-    padding: 5px 10px;
-    font-size: 20px;
-    border-radius: 10px;
-    width: 100%;
-    color: white;
-    
-  }
-  .btn-go:hover {
-  color: white;
-}
- </style>
-
 
 {% endblock head %} 
 
@@ -41,7 +22,7 @@
   
           <div class="section-title" data-aos="fade-up">
             <h2></h2>
-            <p>CHOISISSEZ VOTRE BOX</p>
+            <p>CHOISISSEZ VOTRE BOITE</p>
           </div>
   
           <div class="row">
@@ -50,10 +31,10 @@
               <div class="card">
                 <div class="pic"><img src="{% static 'camera/assets/img/carre.png'%}" class="img-fluid" alt=""></div>
                 <div class="ml-2 mt-1 mb-2 mr-2">
-                  <h5 class="title" ><strong>6 Photos Carrées (5cm x 5cm)  </strong> </h5>
+                  <h5 class="mytitle" ><strong>6 Photos Carrées (5cm x 5cm)  </strong> </h5>
                   <h5 style="color: orange;"><strong>60 Dhs  </strong> </h5>
                   <div>
-                    <p class="card-text"> Une box de 6 photos carrées á coller sur toutes les surfaces aimantées </p>
+                    <p class="card-text"> Une boite de 6 photos carrées á coller sur toutes les surfaces aimantées </p>
                   </div>
                   <br>
                   <a href="{% url 'newsquare' %}" class="btn btn-go mt-2 stretched-link">CHOISIR</a>
@@ -65,7 +46,7 @@
               <div class="card">
                 <div class="pic"><img src="{% static 'camera/assets/img/rect.png'%}" class="img-fluid" alt=""></div>
                 <div class="ml-2 mt-1 mb-2 mr-2">
-                  <h5 class="title" ><strong>6 Photos Réctangles (10cm x 7cm)  </strong> </h5>
+                  <h5 class="mytitle" ><strong>6 Photos Réctangles (10cm x 7cm)  </strong> </h5>
                   <h5 style="color: orange;" ><strong>90 Dhs  </strong> </h5>
                   <div>
                     <p class="card-text"> Portrait ou paysage, vos photos deviennent des jolis aimants </p>
@@ -79,7 +60,7 @@
               <div class="card">
                 <div class="pic"><img src="{% static 'camera/assets/img/big.png'%}" class="img-fluid" alt=""></div>
                 <div class="ml-2 mt-1 mb-2 mr-2">
-                  <h5 class="title" ><strong>6 Photos Grand Format (15cm x 10cm)   </strong> </h5>
+                  <h5 class="mytitle" ><strong>6 Photos Grand Format (15cm x 10cm)   </strong> </h5>
                   <h5 style="color: orange;" ><strong>120 Dhs  </strong> </h5>
                   <div>
                     <p class="card-text"> Vos souvenirs prennent de la taille sur votre frigo</p>

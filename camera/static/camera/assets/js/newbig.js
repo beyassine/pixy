@@ -18,9 +18,14 @@ window.addEventListener("DOMContentLoaded", function () {
       }   
       var reader = new FileReader();
       reader.onload = function (e) {
+        $('#uploadModal').modal('show')
         $('#imgcropped_1').attr('src', e.target.result);      
     }
+    reader.onloadend=function(e){
+      $('#uploadModal').modal('hide')
+    }
     reader.readAsDataURL(input_1.files[0]);
+    
     }      
   });
 
@@ -38,7 +43,11 @@ window.addEventListener("DOMContentLoaded", function () {
       }   
       var reader = new FileReader();
       reader.onload = function (e) {
+        $('#uploadModal').modal('show')
         $('#imgcropped_2').attr('src', e.target.result);      
+    }
+    reader.onloadend=function(e){
+      $('#uploadModal').modal('hide')
     }
     reader.readAsDataURL(input_2.files[0]);
     }    
@@ -58,10 +67,15 @@ window.addEventListener("DOMContentLoaded", function () {
       }   
       var reader = new FileReader();
       reader.onload = function (e) {
+        $('#uploadModal').modal('show')  
         $('#imgcropped_3').attr('src', e.target.result);      
+    }
+    reader.onloadend=function(e){
+      $('#uploadModal').modal('hide')
     }
     reader.readAsDataURL(input_3.files[0]);
     }    
+
   });
 
   var input_4 = document.getElementById("input_4");
@@ -78,7 +92,11 @@ window.addEventListener("DOMContentLoaded", function () {
       }   
       var reader = new FileReader();
       reader.onload = function (e) {
+        $('#uploadModal').modal('show')
         $('#imgcropped_4').attr('src', e.target.result);      
+    }
+    reader.onloadend=function(e){
+      $('#uploadModal').modal('hide')
     }
     reader.readAsDataURL(input_4.files[0]);
     }    
@@ -98,7 +116,11 @@ window.addEventListener("DOMContentLoaded", function () {
       }   
       var reader = new FileReader();
       reader.onload = function (e) {
+        $('#uploadModal').modal('show')
         $('#imgcropped_5').attr('src', e.target.result);      
+    }
+    reader.onloadend=function(e){
+      $('#uploadModal').modal('hide')
     }
     reader.readAsDataURL(input_5.files[0]);
     }    
@@ -118,7 +140,11 @@ window.addEventListener("DOMContentLoaded", function () {
       }   
       var reader = new FileReader();
       reader.onload = function (e) {
+      $('#uploadModal').modal('show')
         $('#imgcropped_6').attr('src', e.target.result);      
+    }
+    reader.onloadend=function(e){
+      $('#uploadModal').modal('hide')
     }
     reader.readAsDataURL(input_6.files[0]);
     }    
@@ -138,12 +164,9 @@ function confirm() {
   if (num_input == 6) {
     var fd1={
       "csrfmiddlewaretoken": csrf[0].value,
-      'nom':'',
-      'tel':'',
-      'adresse':'',
-      'ville':'',
-      'nbre':6,
-      'prix':120,
+        "typec":'Photos Grand Format (15cm x 10cm)',
+        'nbre':6,
+        'prix':120,
     }
     $('#uploadModal').modal('show')
     $.ajax({
@@ -166,7 +189,7 @@ function confirm() {
               data: fd,
               success: function (response) {
                 if ( i == 6){
-                  window.location.href=`http://127.0.0.1:8000/${id}/commande/`
+                  addCookieItem(id,6,120)
                   }
               },
               cache: false,

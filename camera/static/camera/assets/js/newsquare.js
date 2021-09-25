@@ -11,12 +11,14 @@
         alert('Fichier Trop Volumineux !')
         input_1.value=null
       }else{
+        $('#uploadModal').modal('show')
         if (!$(this).hasClass("changed")) {
           addinput()
         $(this).addClass("changed");
         }        
         url = URL.createObjectURL(img_data);
         uploadImage(1, url);
+        $('#uploadModal').modal('hide')
       }      
     });
 
@@ -27,12 +29,14 @@
         alert('Fichier Trop Volumineux !')
         input_2.value=null
       }else{
+        $('#uploadModal').modal('show')
         if (!$(this).hasClass("changed")) {
           addinput()
         $(this).addClass("changed");
         }        
         url = URL.createObjectURL(img_data);
         uploadImage(2, url);
+        $('#uploadModal').modal('hide')
       } 
     });
 
@@ -43,12 +47,14 @@
         alert('Fichier Trop Volumineux !')
         input_3.value=null
       }else{
+        $('#uploadModal').modal('show')
         if (!$(this).hasClass("changed")) {
           addinput()
         $(this).addClass("changed");
         }      
         url = URL.createObjectURL(img_data);
         uploadImage(3, url);
+        $('#uploadModal').modal('hide')
       } 
     });
 
@@ -59,12 +65,14 @@
         alert('Fichier Trop Volumineux !')
         input_4.value=null
       }else{
+        $('#uploadModal').modal('show')
         if (!$(this).hasClass("changed")) {
           addinput()
         $(this).addClass("changed");
         }        
         url = URL.createObjectURL(img_data);
         uploadImage(4, url);
+        $('#uploadModal').modal('hide')
       } 
     });
 
@@ -75,12 +83,14 @@
         alert('Fichier Trop Volumineux !')
         input_5.value=null
       }else{
+        $('#uploadModal').modal('show')
         if (!$(this).hasClass("changed")) {
           addinput()
         $(this).addClass("changed");
         }
         url = URL.createObjectURL(img_data);
         uploadImage(5, url);
+        $('#uploadModal').modal('hide')
         } 
     });
 
@@ -91,12 +101,14 @@
         alert('Fichier Trop Volumineux !')
         input_6.value=null
       }else{
+        $('#uploadModal').modal('show')
         if (!$(this).hasClass("changed")) {
           addinput()
         $(this).addClass("changed");
         }        
         url = URL.createObjectURL(img_data);
         uploadImage(6, url);
+        $('#uploadModal').modal('hide')
       } 
     });
   });
@@ -173,19 +185,17 @@
             cropper.setCropBoxData(cropBoxData).setCanvasData(canvasData);
           },
           cropend: function (event) {
-            const canvas = this.cropper.getCroppedCanvas();
-            setTimeout(function(){    
+            const canvas = this.cropper.getCroppedCanvas(); 
               if($(window).width < 768 && ($(image).height() > 1024 || $(image).width() > 1024)){
                 var resizedCanvas = document.createElement("canvas");
                 var resizedContext = resizedCanvas.getContext("2d");              
                 resizedCanvas.height = "1024";
                 resizedCanvas.width = "1024";              
-                resizedContext.drawImage(canvas, 0, 0, 1000, 1000);
+                resizedContext.drawImage(canvas, 0, 0, 1024, 1024);
                 croppedImage.src = resizedCanvas.toDataURL("image/png"); 
                 }else{
                   croppedImage.src = canvas.toDataURL("image/png"); 
-                }          
-          }, 1500);
+                }    
             
           },
         });
@@ -200,7 +210,7 @@
     if (num_input == 6) {
       var fd1={
         "csrfmiddlewaretoken": csrf[0].value,
-        "typec":'magnet carre',
+        "typec":'Photos Carrées (5cm x 5cm)',
         'nbre':6,
         'prix':60,
       }
@@ -225,7 +235,7 @@
                 data: fd,
                 success: function (response) {
                   if ( i == 6){
-                    window.location.href=`http://127.0.0.1:8000/${id}/commande/`
+                    addCookieItem(id,6,60)
                     }
                 },
                 cache: false,

@@ -98,6 +98,11 @@ def addbig(request,pk):
     order=Commande.objects.get(id=pk)
     return render(request,'camera/addbig.html',{'order_id':order.id,'nbre':order.nbre,'prix':order.prix})
 
+def upsell(request,pk):
+    order=Commande.objects.get(id=pk)
+    return render(request,'camera/upsell.html',{'order_id':order.id,'typec':order.typec})
+
+
 def commande(request,pk):
     order=Commande.objects.get(id=pk)
     return render(request,'camera/order.html',{'order_id':order.id,'nbre':order.nbre,'prix':order.prix})
