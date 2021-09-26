@@ -9,7 +9,7 @@
 
 {% block content %}
 
-      <div class="modal"  id="addModal" data-keyboard="false"  data-backdrop="static" tabindex="-1" role="dialog">
+      <div class="modal modal-dialog-centered"  id="addModal" data-keyboard="false"  data-backdrop="static" tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             {% if typec == 'Photos Carrées (5cm x 5cm)' %}
@@ -20,8 +20,8 @@
             </div>
             <div class="modal-footer">
               <a class="btn btn-warning btn-lg text-white" href="{% url 'addsquare' order_id %}">AJOUTER 6 PHOTOS </a>
-              <a class="btn btn-info btn-lg text-white mt-2 " href="{% url 'produit'%}">AJOUTER NOUVELLE BOITE </a><hr>
-              <a class="btn btn-secondary btn-lg text-white mt-4 " href="{% url 'produit'%}">CONTINUER VERS PANIER </a>
+              <a class="btn btn-success btn-lg text-white mt-2 text-uppercase " href="{% url 'produit'%}">créer NOUVELLE BOITE </a><hr>
+              <a class="btn btn-info btn-lg text-white mt-4 " href="{% url 'produit'%}">CONTINUER VERS PANIER </a>
             </div>
             {% elif typec == 'Photos Réctangles (10cm x 7cm)' %}
             <div class="modal-body">                
@@ -31,8 +31,8 @@
               </div>
               <div class="modal-footer">
                 <a class="btn btn-warning btn-lg text-white " href="{% url 'addrect' order_id %}">AJOUTER 6 PHOTOS </a>
-                <a class="btn btn-info btn-lg text-white mt-2 " href="{% url 'produit'%}">AJOUTER NOUVELLE BOITE </a><hr>
-                <a class="btn btn-secondary btn-lg text-white mt-4 " href="{% url 'produit'%}">CONTINUER VERS PANIER </a>
+                <a class="btn btn-success btn-lg text-white mt-2 text-uppercase " href="{% url 'produit'%}">créer NOUVELLE BOITE </a><hr>
+                <a class="btn btn-info btn-lg text-white mt-4 " href="{% url 'produit'%}">CONTINUER VERS PANIER </a>
               </div>
               {% elif typec == 'Photos Grand Format (15cm x 10cm)' %}
             <div class="modal-body">                
@@ -42,8 +42,8 @@
               </div>
               <div class="modal-footer">
                 <a class="btn btn-warning btn-lg text-white " href="{% url 'addbig' order_id %}">AJOUTER 6 PHOTOS </a>
-                <a class="btn btn-info btn-lg text-white mt-2 " href="{% url 'produit'%}">AJOUTER NOUVELLE BOITE </a><hr>
-                <a class="btn btn-secondary btn-lg text-white mt-4 " href="{% url 'produit'%}">CONTINUER VERS PANIER </a>
+                <a class="btn btn-success btn-lg text-white mt-2  text-uppercase" href="{% url 'produit'%}">créer NOUVELLE BOITE </a><hr>
+                <a class="btn btn-info btn-lg text-white mt-4 " href="{% url 'produit'%}">CONTINUER VERS PANIER </a>
               </div>
               {%endif%}
 

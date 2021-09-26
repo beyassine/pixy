@@ -227,6 +227,7 @@
                       }
                       ).then(function(response){     
                         addCookieItem(order_id,6,40)
+                        window.location.href=`http://127.0.0.1:8000/${order_id}/ajouter/`
                       })
                     
                     }
