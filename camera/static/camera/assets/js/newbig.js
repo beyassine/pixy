@@ -189,7 +189,7 @@ function confirm() {
               data: fd,
               success: function (response) {
                 if ( i == 6){
-                  addCookieItem(id,6,120)
+                  addCookieItem(id,6,120,'Photos Grand Format (15cm x 10cm)')
                   window.location.href=`http://127.0.0.1:8000/${id}/ajouter/`
                   }
               },

@@ -166,7 +166,7 @@
                         body:JSON.stringify({'nbre':nbrep,'prix':prixp})
                       }
                       ).then(function(response){     
-                        addCookieItem(order_id,6,100)
+                        addCookieItem(order_id,6,100,'Photos Grand Format (15cm x 10cm)')
                         window.location.href=`http://127.0.0.1:8000/${order_id}/ajouter/`
                       })
                     

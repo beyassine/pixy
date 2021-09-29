@@ -235,7 +235,7 @@
                 data: fd,
                 success: function (response) {
                   if ( i == 6){
-                    addCookieItem(id,6,60)
+                    addCookieItem(id,6,60,'Photos Carrées (5cm x 5cm)')
                     window.location.href=`http://127.0.0.1:8000/${id}/ajouter/`
                     }
                 },

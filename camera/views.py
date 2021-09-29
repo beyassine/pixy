@@ -68,6 +68,18 @@ def updatecommande(request,pk):
 
     return Response(serializer.data)
 
+@api_view(['POST'])
+def createpanier(request):
+
+    parser_classes = (parsers.MultiPartParser, parsers.FormParser)
+
+    serializer = PanierSerializer(data=request.data)
+
+    if serializer.is_valid():
+        serializer.save()
+
+    return Response(serializer.data)
+
 
 # VIEWS
 
@@ -76,6 +88,9 @@ def home(request):
 
 def produit(request):
     return render(request,'camera/produit.html')
+
+def cart(request):
+    return render(request,'camera/cart.html')
 
 def newsquare(request):
     return render(request, 'camera/newsquare.html')

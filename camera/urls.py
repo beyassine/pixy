@@ -9,10 +9,12 @@ urlpatterns = [
     path('api/createphoto/', views.createphoto, name="createphoto"),
     path('api/createcommande/', views.createcommande, name="createcommande"),
     path('api/<int:pk>/updatecommande/', views.updatecommande, name="updatecommande"),
+    path('api/createpanier/', views.createpanier, name="createpanier"),
 
     # VIEWS
     path('', views.home, name="home"),
     path('produit', views.produit, name="produit"),
+    path('panier', views.cart, name="cart"),
     path('nouveaucarre', views.newsquare, name="newsquare"),
     path('<int:pk>/ajoutercarre/', views.addsquare, name="addsquare"),
     path('nouveaurect', views.newrect, name="newrect"),

@@ -189,7 +189,7 @@ function confirm() {
               data: fd,
               success: function (response) {
                 if ( i == 6){
-                  addCookieItem(id,6,90)
+                  addCookieItem(id,6,90,'Photos Réctangles (10cm x 7cm)')
                   window.location.href=`http://127.0.0.1:8000/${id}/ajouter/`
                   }
               },

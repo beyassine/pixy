@@ -226,7 +226,7 @@
                         body:JSON.stringify({'nbre':nbrep,'prix':prixp})
                       }
                       ).then(function(response){     
-                        addCookieItem(order_id,6,40)
+                        addCookieItem(order_id,6,40,'Photos Carrées (5cm x 5cm)')
                         window.location.href=`http://127.0.0.1:8000/${order_id}/ajouter/`
                       })
                     

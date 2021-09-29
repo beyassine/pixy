@@ -3,15 +3,6 @@ from .models import *
 
 
 class Base64ImageField(serializers.ImageField):
-    """
-    A Django REST framework field for handling image-uploads through raw post data.
-    It uses base64 for encoding and decoding the contents of the file.
-
-    Heavily based on
-    https://github.com/tomchristie/django-rest-framework/pull/1268
-
-    Updated for Django REST framework 3.
-    """
 
     def to_internal_value(self, data):
         from django.core.files.base import ContentFile
@@ -74,4 +65,18 @@ class PanierSerializer(serializers.ModelSerializer):
    
     class Meta:
         model = Panier
-        fields = '__all__'
+        fields = ('id', 'listcommande', 'nom', 'tel', 'adresse','ville','prix','complete')
+
+    def create(self, validated_data):
+
+        instance = Panier.objects.create(**validated_data)
+
+        if (validated_data['listcommande'] != ''):
+
+            listcommande = validated_data['listcommande'].split('/')
+
+            for i in listcommande:
+                if (i != ''):
+                    c = Commande.objects.get(id=int(i))
+                    instance.commande.add(c)
+        return instance

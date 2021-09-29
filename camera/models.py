@@ -36,6 +36,7 @@ class Photo(models.Model):
 
 class Panier(models.Model):
     commande=models.ManyToManyField(Commande,default='',verbose_name='commande')
+    listcommande= models.CharField(max_length=1000, default='', verbose_name='listcommande')
     nom = models.CharField(max_length=100, default='', verbose_name='Nom')
     tel = models.CharField(max_length=100, default='',
                            verbose_name='Telephone')
@@ -46,3 +47,6 @@ class Panier(models.Model):
     prix = models.DecimalField(max_digits=9, decimal_places=2)
     date_ordered = models.DateTimeField(default=timezone.now)
     complete = models.BooleanField(default=False)
+    
+    def __str__(self):
+        return f'{self.id}'

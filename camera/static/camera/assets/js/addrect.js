@@ -166,7 +166,7 @@
                         body:JSON.stringify({'nbre':nbrep,'prix':prixp})
                       }
                       ).then(function(response){     
-                        addCookieItem(order_id,6,70)
+                        addCookieItem(order_id,6,70,'Photos Réctangles (10cm x 7cm)')
                         window.location.href=`http://127.0.0.1:8000/${order_id}/ajouter/`
                       })
                     
