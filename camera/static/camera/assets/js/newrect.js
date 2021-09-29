@@ -166,12 +166,12 @@ function confirm() {
       "csrfmiddlewaretoken": csrf[0].value,
         "typec":'Photos Réctangles (10cm x 7cm)',
         'nbre':6,
-        'prix':120,
+        'prix':90,
     }
     $('#uploadModal').modal('show')
     $.ajax({
         type: "POST",
-        url: "http://127.0.0.1:8000/api/createcommande/",
+        url: "https://pixy.ma/api/createcommande/",
         enctype: "multipart/form-data",
         data: fd1,
         success: function (response) {
@@ -184,13 +184,13 @@ function confirm() {
             fd.append("image", $(`#imgcropped_${i}`).attr("src"));
             $.ajax({
               type: "POST",
-              url: "http://127.0.0.1:8000/api/createphoto/",
+              url: "https://pixy.ma/api/createphoto/",
               enctype: "multipart/form-data",
               data: fd,
               success: function (response) {
                 if ( i == 6){
                   addCookieItem(id,6,90,'Photos Réctangles (10cm x 7cm)')
-                  window.location.href=`http://127.0.0.1:8000/${id}/ajouter/`
+                  window.location.href=`https://pixy.ma/${id}/ajouter/`
                   }
               },
               cache: false,

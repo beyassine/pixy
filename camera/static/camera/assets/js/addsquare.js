@@ -209,14 +209,14 @@
               fd.append("image", $(`#imgcropped_${i}`).attr("src"));
               $.ajax({
                 type: "POST",
-                url: "http://127.0.0.1:8000/api/createphoto/",
+                url: "https://pixy.ma/api/createphoto/",
                 enctype: "multipart/form-data",
                 data: fd,
                 success: function (response) {
                   if ( i == 6){
                     nbrep=parseInt(nbre)+6
                     prixp=parseInt(prix)+40
-                      var url=`http://127.0.0.1:8000/api/${order_id}/updatecommande/`
+                      var url=`https://pixy.ma/api/${order_id}/updatecommande/`
                         fetch(url, {
                         method:'POST',
                         headers:{
@@ -227,7 +227,7 @@
                       }
                       ).then(function(response){     
                         addCookieItem(order_id,6,40,'Photos Carrées (5cm x 5cm)')
-                        window.location.href=`http://127.0.0.1:8000/${order_id}/ajouter/`
+                        window.location.href=`https://pixy.ma/${order_id}/ajouter/`
                       })
                     
                     }

@@ -115,7 +115,7 @@ function confirm(){
       document.getElementById('validate_adresse').innerHTML=''
   
     }
-    var url=`http://127.0.0.1:8000/api/createpanier/`
+    var url=`https://pixy.ma/api/createpanier/`
           fetch(url, {
           method:'POST',
           headers:{

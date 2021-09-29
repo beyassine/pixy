@@ -45,7 +45,7 @@ function confirm(){
     document.getElementById('validate_adresse').innerHTML=''
 
   }
-  var url=`http://127.0.0.1:8000/api/${order_id}/updatecommande/`
+  var url=`https://pixy.ma/api/${order_id}/updatecommande/`
         fetch(url, {
         method:'POST',
         headers:{
