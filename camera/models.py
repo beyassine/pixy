@@ -37,7 +37,6 @@ class Photo(models.Model):
 class Panier(models.Model):
     commande=models.ManyToManyField(Commande,default='',verbose_name='commande')
     listcommande= models.CharField(max_length=1000, default='', verbose_name='listcommande')
-    test=models.CharField(max_length=1000, default='', verbose_name='test')
     nom = models.CharField(max_length=100, default='', verbose_name='Nom')
     tel = models.CharField(max_length=100, default='',
                            verbose_name='Telephone')
