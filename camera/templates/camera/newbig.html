@@ -90,6 +90,22 @@
     </div>
   </div>
 </div>
+<div class="modal "  id="addModal" data-keyboard="false"  data-backdrop="static" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body">                
+        <p class="text-center text-uppercase"> <img src="{% static 'camera/assets/img/discount.png' %}"><br>
+          AJOUTER 6 PHOTOS Grand Format (15cm x 10cm) Á SEULEMENT <span class="text-danger h4" ><strong>100 DH</strong></span> 
+        </p>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-warning btn-lg text-white" id="btnredirect">AJOUTER 6 PHOTOS </a>
+        <a class="btn btn-success btn-lg text-white mt-2 text-uppercase " href="{% url 'produit'%}">créer une NOUVELLE BOITE </a><hr>
+        <a class="btn btn-info btn-lg text-white mt-4 " href="{% url 'cart'%}">CONTINUER VERS PANIER </a>
+      </div>
+    </div>
+  </div>
+</div>
 {% endblock content %} 
 {% block foot %}
 <script src="{% static 'camera/assets/js/newbig.js'%}"></script>

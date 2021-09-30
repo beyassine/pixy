@@ -235,8 +235,11 @@
                 data: fd,
                 success: function (response) {
                   if ( i == 6){
-                    addCookieItem(id,6,60,'Photos Carrées (5cm x 5cm)')
-                    window.location.href=`https://pixy.ma/${id}/ajouter/`
+                    addCookieItem(id,6,60,'Photos Carrees (5cm x 5cm)')
+                    document.getElementById('btnredirect').setAttribute('href',`https://pixy.ma/${id}/ajoutercarre/`)
+                    $('#uploadModal').modal('hide')
+                    $('#addModal').modal('show')
+
                     }
                 },
                 cache: false,

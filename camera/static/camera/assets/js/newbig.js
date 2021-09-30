@@ -189,8 +189,11 @@ function confirm() {
               data: fd,
               success: function (response) {
                 if ( i == 6){
-                  addCookieItem(id,6,120,'Photos Grand Format (15cm x 10cm)')
-                  window.location.href=`https://pixy.ma/${id}/ajouter/`
+                  addCookieItem(id,6,120,'Photos Grand Format (15cm x 10cm)')                  
+                  document.getElementById('btnredirect').setAttribute('href',`https://pixy.ma/${id}/ajoutergrand/`)
+                  $('#uploadModal').modal('hide')
+                  $('#addModal').modal('show')
+
                   }
               },
               cache: false,

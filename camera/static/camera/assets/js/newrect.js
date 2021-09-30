@@ -189,8 +189,10 @@ function confirm() {
               data: fd,
               success: function (response) {
                 if ( i == 6){
-                  addCookieItem(id,6,90,'Photos Réctangles (10cm x 7cm)')
-                  window.location.href=`https://pixy.ma/${id}/ajouter/`
+                  addCookieItem(id,6,90,'Photos Rectangles (10cm x 7cm)')
+                  document.getElementById('btnredirect').setAttribute('href',`https://pixy.ma/${id}/ajouterrect/`)
+                  $('#uploadModal').modal('hide')
+                  $('#addModal').modal('show')
                   }
               },
               cache: false,
