@@ -11,14 +11,12 @@
         alert('Fichier Trop Volumineux !')
         input_1.value=null
       }else{
-        $('#uploadModal').modal('show')
         if (!$(this).hasClass("changed")) {
           addinput()
         $(this).addClass("changed");
         }        
         url = URL.createObjectURL(img_data);
         uploadImage(1, url);
-        $('#uploadModal').modal('hide')
       }      
     });
 
@@ -139,8 +137,14 @@
       aspectRatio: 9 / 9,
       cropBoxResizable: false,
       crop: function (event) {
-        const canvas = this.cropper.getCroppedCanvas();
-        croppedImage.src = canvas.toDataURL("image/png");
+        const canvas = this.cropper.getCroppedCanvas(); 
+                var resizedCanvas = document.createElement("canvas");
+                var resizedContext = resizedCanvas.getContext("2d");              
+                resizedCanvas.height = "500";
+                resizedCanvas.width = "500";              
+                resizedContext.drawImage(canvas, 0, 0, 500, 500);
+                croppedImage.src = resizedCanvas.toDataURL("image/png"); 
+                console.log( resizedCanvas.toDataURL("image/png").length) 
         image.setAttribute(
           "data-cropdata",
           JSON.stringify(cropper.getCropBoxData())
@@ -186,17 +190,13 @@
           },
           cropend: function (event) {
             const canvas = this.cropper.getCroppedCanvas(); 
-              if($(window).width < 768 ){
                 var resizedCanvas = document.createElement("canvas");
                 var resizedContext = resizedCanvas.getContext("2d");              
                 resizedCanvas.height = "500";
                 resizedCanvas.width = "500";              
                 resizedContext.drawImage(canvas, 0, 0, 500, 500);
-                croppedImage.src = resizedCanvas.toDataURL("image/png"); 
-                }else{
-                  croppedImage.src = canvas.toDataURL("image/png"); 
-                }    
-            
+                croppedImage.src = resizedCanvas.toDataURL("image/png");            
+                
           },
         });
         var cropper = $image.data("cropper");
