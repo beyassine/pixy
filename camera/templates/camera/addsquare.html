@@ -113,6 +113,23 @@
     </div>
   </div>
 </div>
+</div>
+<div class="modal "  id="addModal" data-keyboard="false"  data-backdrop="static" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body">                
+        <p class="text-center text-uppercase"> <img src="{% static 'camera/assets/img/discount.png' %}"><br>
+          AJOUTER 6 PHOTOS Carrées (5cm x 5cm) Á SEULEMENT <span class="text-danger h4" ><strong>40 DH</strong></span> 
+        </p>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-warning btn-lg text-white" id="btnredirect">AJOUTER 6 PHOTOS </a><hr>
+        <a class="btn btn-success btn-lg text-white mt-2 text-uppercase " href="{% url 'produit'%}">créer une NOUVELLE BOITE </a>
+        <a class="btn btn-info btn-lg text-white mt-4 " href="{% url 'cart'%}">CONTINUER VERS PANIER </a>
+      </div>
+    </div>
+  </div>
+</div>
 {{order_id|json_script:"order_id" }}
 {{nbre|json_script:"nbre" }}
 {{prix|json_script:"prix" }}

@@ -167,7 +167,9 @@
                       }
                       ).then(function(response){     
                         addCookieItem(order_id,6,70,'Photos Réctangles (10cm x 7cm)')
-                        window.location.href=`https://pixy.ma/${order_id}/ajouter/`
+                        document.getElementById('btnredirect').setAttribute('href',`https://pixy.ma/${id}/ajouterrect/`)
+                        $('#uploadModal').modal('hide')
+                        $('#addModal').modal('show')
                       })
                     
                     }

@@ -167,7 +167,9 @@
                       }
                       ).then(function(response){     
                         addCookieItem(order_id,6,100,'Photos Grand Format (15cm x 10cm)')
-                        window.location.href=`https://pixy.ma/${order_id}/ajouter/`
+                        document.getElementById('btnredirect').setAttribute('href',`https://pixy.ma/${id}/ajoutergrand/`)
+                        $('#uploadModal').modal('hide')
+                        $('#addModal').modal('show')
                       })
                     
                     }

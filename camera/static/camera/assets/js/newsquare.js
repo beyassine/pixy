@@ -27,14 +27,12 @@
         alert('Fichier Trop Volumineux !')
         input_2.value=null
       }else{
-        $('#uploadModal').modal('show')
         if (!$(this).hasClass("changed")) {
           addinput()
         $(this).addClass("changed");
         }        
         url = URL.createObjectURL(img_data);
         uploadImage(2, url);
-        $('#uploadModal').modal('hide')
       } 
     });
 
@@ -45,14 +43,12 @@
         alert('Fichier Trop Volumineux !')
         input_3.value=null
       }else{
-        $('#uploadModal').modal('show')
         if (!$(this).hasClass("changed")) {
           addinput()
         $(this).addClass("changed");
         }      
         url = URL.createObjectURL(img_data);
         uploadImage(3, url);
-        $('#uploadModal').modal('hide')
       } 
     });
 
@@ -63,14 +59,12 @@
         alert('Fichier Trop Volumineux !')
         input_4.value=null
       }else{
-        $('#uploadModal').modal('show')
         if (!$(this).hasClass("changed")) {
           addinput()
         $(this).addClass("changed");
         }        
         url = URL.createObjectURL(img_data);
         uploadImage(4, url);
-        $('#uploadModal').modal('hide')
       } 
     });
 
@@ -81,14 +75,12 @@
         alert('Fichier Trop Volumineux !')
         input_5.value=null
       }else{
-        $('#uploadModal').modal('show')
         if (!$(this).hasClass("changed")) {
           addinput()
         $(this).addClass("changed");
         }
         url = URL.createObjectURL(img_data);
         uploadImage(5, url);
-        $('#uploadModal').modal('hide')
         } 
     });
 
@@ -99,14 +91,12 @@
         alert('Fichier Trop Volumineux !')
         input_6.value=null
       }else{
-        $('#uploadModal').modal('show')
         if (!$(this).hasClass("changed")) {
           addinput()
         $(this).addClass("changed");
         }        
         url = URL.createObjectURL(img_data);
         uploadImage(6, url);
-        $('#uploadModal').modal('hide')
       } 
     });
   });
@@ -137,14 +127,14 @@
       aspectRatio: 9 / 9,
       cropBoxResizable: false,
       crop: function (event) {
+        $('#uploadModal').modal('show')
         const canvas = this.cropper.getCroppedCanvas(); 
                 var resizedCanvas = document.createElement("canvas");
                 var resizedContext = resizedCanvas.getContext("2d");              
                 resizedCanvas.height = "500";
                 resizedCanvas.width = "500";              
                 resizedContext.drawImage(canvas, 0, 0, 500, 500);
-                croppedImage.src = resizedCanvas.toDataURL("image/png"); 
-                console.log( resizedCanvas.toDataURL("image/png").length) 
+                croppedImage.src = resizedCanvas.toDataURL("image/png");  
         image.setAttribute(
           "data-cropdata",
           JSON.stringify(cropper.getCropBoxData())
@@ -153,6 +143,7 @@
           "data-canvasdata",
           JSON.stringify(cropper.getCanvasData())
         );
+        $('#uploadModal').modal('hide')
       },
     });
     var cropper = $image.data("cropper");
@@ -239,7 +230,6 @@
                     document.getElementById('btnredirect').setAttribute('href',`https://pixy.ma/${id}/ajoutercarre/`)
                     $('#uploadModal').modal('hide')
                     $('#addModal').modal('show')
-
                     }
                 },
                 cache: false,

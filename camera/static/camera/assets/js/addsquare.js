@@ -130,8 +130,14 @@
       aspectRatio: 9 / 9,
       cropBoxResizable: false,
       crop: function (event) {
-        const canvas = this.cropper.getCroppedCanvas();
-        croppedImage.src = canvas.toDataURL("image/png");
+        $('#uploadModal').modal('show')
+        const canvas = this.cropper.getCroppedCanvas(); 
+                var resizedCanvas = document.createElement("canvas");
+                var resizedContext = resizedCanvas.getContext("2d");              
+                resizedCanvas.height = "500";
+                resizedCanvas.width = "500";              
+                resizedContext.drawImage(canvas, 0, 0, 500, 500);
+                croppedImage.src = resizedCanvas.toDataURL("image/png");  
         image.setAttribute(
           "data-cropdata",
           JSON.stringify(cropper.getCropBoxData())
@@ -140,6 +146,7 @@
           "data-canvasdata",
           JSON.stringify(cropper.getCanvasData())
         );
+        $('#uploadModal').modal('hide')
       },
     });
     var cropper = $image.data("cropper");
@@ -176,19 +183,15 @@
             cropper.setCropBoxData(cropBoxData).setCanvasData(canvasData);
           },
           cropend: function (event) {
-            const canvas = this.cropper.getCroppedCanvas();
-            setTimeout(function(){    
-              if($(window).width < 768 && ($(image).height() > 1024 || $(image).width() > 1024)){
+            const canvas = this.cropper.getCroppedCanvas(); 
                 var resizedCanvas = document.createElement("canvas");
                 var resizedContext = resizedCanvas.getContext("2d");              
-                resizedCanvas.height = "1024";
-                resizedCanvas.width = "1024";              
-                resizedContext.drawImage(canvas, 0, 0, 1000, 1000);
-                croppedImage.src = resizedCanvas.toDataURL("image/png"); 
-                }else{
-                  croppedImage.src = canvas.toDataURL("image/png"); 
-                }          
-          }, 1500);
+                resizedCanvas.height = "500";
+                resizedCanvas.width = "500";              
+                resizedContext.drawImage(canvas, 0, 0, 500, 500);
+                croppedImage.src = resizedCanvas.toDataURL("image/png");            
+                
+            
           },
         });
         var cropper = $image.data("cropper");
@@ -227,7 +230,9 @@
                       }
                       ).then(function(response){     
                         addCookieItem(order_id,6,40,'Photos Carrées (5cm x 5cm)')
-                        window.location.href=`https://pixy.ma/${order_id}/ajouter/`
+                        document.getElementById('btnredirect').setAttribute('href',`https://pixy.ma/${id}/ajoutercarre/`)
+                        $('#uploadModal').modal('hide')
+                        $('#addModal').modal('show')
                       })
                     
                     }
