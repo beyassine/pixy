@@ -325,7 +325,7 @@ function confirm() {
     $('#uploadModal').modal('show')
     $.ajax({
         type: "POST",
-        url: "http://127.0.0.1:8000/api/createcommande/",
+        url: "https://pixy.ma/api/createcommande/",
         enctype: "multipart/form-data",
         data: fd1,
         success: function (response) {
@@ -338,13 +338,13 @@ function confirm() {
             fd.append("image", $(`#imgcropped_${i}`).attr("src"));
             $.ajax({
               type: "POST",
-              url: "http://127.0.0.1:8000/api/createphoto/",
+              url: "https://pixy.ma/api/createphoto/",
               enctype: "multipart/form-data",
               data: fd,
               success: function (response) {
                 if ( i == 6){
                   addCookieItem(id,6,90,'Photos Rectangles (10cm x 7cm)')
-                  document.getElementById('btnredirect').setAttribute('href',`http://127.0.0.1:8000/${id}/ajouterrect/`)
+                  document.getElementById('btnredirect').setAttribute('href',`https://pixy.ma/${id}/ajouterrect/`)
                   $('#uploadModal').modal('hide')
                   $('#addModal').modal('show')
                   }
