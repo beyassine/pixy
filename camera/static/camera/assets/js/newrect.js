@@ -28,14 +28,12 @@ window.addEventListener("DOMContentLoaded", function () {
                   width = image.width,
                   height = image.height;
               if (width > height) {
-                  console.log('paysage')
                   if (width > max_size) {
                       height *= max_size / width;
                       width = max_size;
                   }
               } else {
                   if (height > max_size) {
-                    console.log('portrait')
                       width *= max_size / height;
                       height = max_size;
                   }
@@ -59,7 +57,7 @@ window.addEventListener("DOMContentLoaded", function () {
 
   var input_2 = document.getElementById("input_2");
   input_2.addEventListener("change", function () { 
-    img_data = input_1.files[0];
+    img_data = input_2.files[0];
 
     if (img_data.size > 5242880){
       alert('Fichier Trop Volumineux !')
@@ -130,14 +128,12 @@ window.addEventListener("DOMContentLoaded", function () {
                   width = image.width,
                   height = image.height;
               if (width > height) {
-                  console.log('paysage')
                   if (width > max_size) {
                       height *= max_size / width;
                       width = max_size;
                   }
               } else {
                   if (height > max_size) {
-                    console.log('portrait')
                       width *= max_size / height;
                       height = max_size;
                   }
@@ -181,14 +177,12 @@ window.addEventListener("DOMContentLoaded", function () {
                   width = image.width,
                   height = image.height;
               if (width > height) {
-                  console.log('paysage')
                   if (width > max_size) {
                       height *= max_size / width;
                       width = max_size;
                   }
               } else {
                   if (height > max_size) {
-                    console.log('portrait')
                       width *= max_size / height;
                       height = max_size;
                   }
@@ -231,14 +225,12 @@ window.addEventListener("DOMContentLoaded", function () {
                   width = image.width,
                   height = image.height;
               if (width > height) {
-                  console.log('paysage')
                   if (width > max_size) {
                       height *= max_size / width;
                       width = max_size;
                   }
               } else {
                   if (height > max_size) {
-                    console.log('portrait')
                       width *= max_size / height;
                       height = max_size;
                   }
@@ -281,14 +273,12 @@ window.addEventListener("DOMContentLoaded", function () {
                   width = image.width,
                   height = image.height;
               if (width > height) {
-                  console.log('paysage')
                   if (width > max_size) {
                       height *= max_size / width;
                       width = max_size;
                   }
               } else {
                   if (height > max_size) {
-                    console.log('portrait')
                       width *= max_size / height;
                       height = max_size;
                   }
