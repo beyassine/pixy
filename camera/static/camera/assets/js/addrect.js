@@ -5,9 +5,11 @@
   const imgcontainer = document.getElementById("imgcontainer");
   const csrf = document.getElementsByName("csrfmiddlewaretoken");
   var num_input = 0;
+  
   window.addEventListener("DOMContentLoaded", function () {
     var input_1 = document.getElementById("input_1");
-    input_1.addEventListener("change", function () {    
+    input_1.addEventListener("change", function () { 
+      if (input_1.files && input_1.files[0]) {   
   
       img_data = input_1.files[0];
   
@@ -18,13 +20,45 @@
         if (!$(this).hasClass("changed")) {
           addinput()
         $(this).addClass("changed");
-        }   
+        }
+        // Load the image
         var reader = new FileReader();
-        reader.onload = function (e) {
-          $('#imgcropped_1').attr('src', e.target.result);      
-      }
-      reader.readAsDataURL(input_1.files[0]);
-      }      
+        reader.onload = function (readerEvent) {
+            var image = new Image();
+            image.onload = function (imageEvent) {
+                // Resize the image
+                var canvas = document.createElement('canvas'),
+                    max_size = 500,// TODO : pull max size from a site config
+                    width = image.width,
+                    height = image.height;
+                if (width > height) {
+                    console.log('paysage')
+                    if (width > max_size) {
+                        height *= max_size / width;
+                        width = max_size;
+                    }
+                } else {
+                    if (height > max_size) {
+                      console.log('portrait')
+                        width *= max_size / height;
+                        height = max_size;
+                    }
+                }
+                canvas.width = width;
+                canvas.height = height;
+                canvas.getContext('2d').drawImage(image, 0, 0, width, height);
+                var dataUrl = canvas.toDataURL('image/jpeg');
+                $('#imgcropped_1').attr('width', width);    
+                $('#imgcropped_1').attr('height', height);    
+                $('#imgcropped_1').attr('src', dataUrl);      
+  
+            }
+            image.src = readerEvent.target.result;
+        }
+        reader.readAsDataURL(img_data);
+      }  
+  
+    } 
     });
   
     var input_2 = document.getElementById("input_2");
@@ -38,12 +72,42 @@
         if (!$(this).hasClass("changed")) {
           addinput()
         $(this).addClass("changed");
-        }   
+        }
+        // Load the image
         var reader = new FileReader();
-        reader.onload = function (e) {
-          $('#imgcropped_2').attr('src', e.target.result);      
-      }
-      reader.readAsDataURL(input_2.files[0]);
+        reader.onload = function (readerEvent) {
+            var image = new Image();
+            image.onload = function (imageEvent) {
+                // Resize the image
+                var canvas = document.createElement('canvas'),
+                    max_size = 500,// TODO : pull max size from a site config
+                    width = image.width,
+                    height = image.height;
+                if (width > height) {
+                    console.log('paysage')
+                    if (width > max_size) {
+                        height *= max_size / width;
+                        width = max_size;
+                    }
+                } else {
+                    if (height > max_size) {
+                      console.log('portrait')
+                        width *= max_size / height;
+                        height = max_size;
+                    }
+                }
+                canvas.width = width;
+                canvas.height = height;
+                canvas.getContext('2d').drawImage(image, 0, 0, width, height);
+                var dataUrl = canvas.toDataURL('image/jpeg');
+                $('#imgcropped_2').attr('width', width);    
+                $('#imgcropped_2').attr('height', height);    
+                $('#imgcropped_2').attr('src', dataUrl);      
+  
+            }
+            image.src = readerEvent.target.result;
+        }
+        reader.readAsDataURL(img_data);
       }    
     });
   
@@ -58,13 +122,44 @@
         if (!$(this).hasClass("changed")) {
           addinput()
         $(this).addClass("changed");
-        }   
+        }
+        // Load the image
         var reader = new FileReader();
-        reader.onload = function (e) {
-          $('#imgcropped_3').attr('src', e.target.result);      
-      }
-      reader.readAsDataURL(input_3.files[0]);
+        reader.onload = function (readerEvent) {
+            var image = new Image();
+            image.onload = function (imageEvent) {
+                // Resize the image
+                var canvas = document.createElement('canvas'),
+                    max_size = 500,// TODO : pull max size from a site config
+                    width = image.width,
+                    height = image.height;
+                if (width > height) {
+                    console.log('paysage')
+                    if (width > max_size) {
+                        height *= max_size / width;
+                        width = max_size;
+                    }
+                } else {
+                    if (height > max_size) {
+                      console.log('portrait')
+                        width *= max_size / height;
+                        height = max_size;
+                    }
+                }
+                canvas.width = width;
+                canvas.height = height;
+                canvas.getContext('2d').drawImage(image, 0, 0, width, height);
+                var dataUrl = canvas.toDataURL('image/jpeg');
+                $('#imgcropped_3').attr('width', width);    
+                $('#imgcropped_3').attr('height', height);    
+                $('#imgcropped_3').attr('src', dataUrl);      
+  
+            }
+            image.src = readerEvent.target.result;
+        }
+        reader.readAsDataURL(img_data);
       }    
+  
     });
   
     var input_4 = document.getElementById("input_4");
@@ -78,12 +173,42 @@
         if (!$(this).hasClass("changed")) {
           addinput()
         $(this).addClass("changed");
-        }   
+        }
+        // Load the image
         var reader = new FileReader();
-        reader.onload = function (e) {
-          $('#imgcropped_4').attr('src', e.target.result);      
-      }
-      reader.readAsDataURL(input_4.files[0]);
+        reader.onload = function (readerEvent) {
+            var image = new Image();
+            image.onload = function (imageEvent) {
+                // Resize the image
+                var canvas = document.createElement('canvas'),
+                    max_size = 500,// TODO : pull max size from a site config
+                    width = image.width,
+                    height = image.height;
+                if (width > height) {
+                    console.log('paysage')
+                    if (width > max_size) {
+                        height *= max_size / width;
+                        width = max_size;
+                    }
+                } else {
+                    if (height > max_size) {
+                      console.log('portrait')
+                        width *= max_size / height;
+                        height = max_size;
+                    }
+                }
+                canvas.width = width;
+                canvas.height = height;
+                canvas.getContext('2d').drawImage(image, 0, 0, width, height);
+                var dataUrl = canvas.toDataURL('image/jpeg');
+                $('#imgcropped_4').attr('width', width);    
+                $('#imgcropped_4').attr('height', height);    
+                $('#imgcropped_4').attr('src', dataUrl);      
+  
+            }
+            image.src = readerEvent.target.result;
+        }
+        reader.readAsDataURL(img_data);
       }    
     });
   
@@ -98,12 +223,42 @@
         if (!$(this).hasClass("changed")) {
           addinput()
         $(this).addClass("changed");
-        }   
+        }
+        // Load the image
         var reader = new FileReader();
-        reader.onload = function (e) {
-          $('#imgcropped_5').attr('src', e.target.result);      
-      }
-      reader.readAsDataURL(input_5.files[0]);
+        reader.onload = function (readerEvent) {
+            var image = new Image();
+            image.onload = function (imageEvent) {
+                // Resize the image
+                var canvas = document.createElement('canvas'),
+                    max_size = 500,// TODO : pull max size from a site config
+                    width = image.width,
+                    height = image.height;
+                if (width > height) {
+                    console.log('paysage')
+                    if (width > max_size) {
+                        height *= max_size / width;
+                        width = max_size;
+                    }
+                } else {
+                    if (height > max_size) {
+                      console.log('portrait')
+                        width *= max_size / height;
+                        height = max_size;
+                    }
+                }
+                canvas.width = width;
+                canvas.height = height;
+                canvas.getContext('2d').drawImage(image, 0, 0, width, height);
+                var dataUrl = canvas.toDataURL('image/jpeg');
+                $('#imgcropped_5').attr('width', width);    
+                $('#imgcropped_5').attr('height', height);    
+                $('#imgcropped_5').attr('src', dataUrl);      
+  
+            }
+            image.src = readerEvent.target.result;
+        }
+        reader.readAsDataURL(img_data);
       }    
     });
   
@@ -118,16 +273,45 @@
         if (!$(this).hasClass("changed")) {
           addinput()
         $(this).addClass("changed");
-        }   
+        }
+        // Load the image
         var reader = new FileReader();
-        reader.onload = function (e) {
-          $('#imgcropped_6').attr('src', e.target.result);      
-      }
-      reader.readAsDataURL(input_6.files[0]);
+        reader.onload = function (readerEvent) {
+            var image = new Image();
+            image.onload = function (imageEvent) {
+                // Resize the image
+                var canvas = document.createElement('canvas'),
+                    max_size = 500,// TODO : pull max size from a site config
+                    width = image.width,
+                    height = image.height;
+                if (width > height) {
+                    console.log('paysage')
+                    if (width > max_size) {
+                        height *= max_size / width;
+                        width = max_size;
+                    }
+                } else {
+                    if (height > max_size) {
+                      console.log('portrait')
+                        width *= max_size / height;
+                        height = max_size;
+                    }
+                }
+                canvas.width = width;
+                canvas.height = height;
+                canvas.getContext('2d').drawImage(image, 0, 0, width, height);
+                var dataUrl = canvas.toDataURL('image/jpeg');
+                $('#imgcropped_6').attr('width', width);    
+                $('#imgcropped_6').attr('height', height);    
+                $('#imgcropped_6').attr('src', dataUrl);      
+  
+            }
+            image.src = readerEvent.target.result;
+        }
+        reader.readAsDataURL(img_data);
       }    
     });
   });
-
 
   function addinput(){
     num_input += 1
@@ -167,7 +351,7 @@
                       }
                       ).then(function(response){     
                         addCookieItem(order_id,6,70,'Photos Réctangles (10cm x 7cm)')
-                        document.getElementById('btnredirect').setAttribute('href',`https://pixy.ma/${id}/ajouterrect/`)
+                        document.getElementById('btnredirect').setAttribute('href',`https://pixy.ma/${order_id}/ajouterrect/`)
                         $('#uploadModal').modal('hide')
                         $('#addModal').modal('show')
                       })

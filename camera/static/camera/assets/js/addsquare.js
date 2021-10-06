@@ -132,12 +132,12 @@
       crop: function (event) {
         $('#uploadModal').modal('show')
         const canvas = this.cropper.getCroppedCanvas(); 
-                var resizedCanvas = document.createElement("canvas");
-                var resizedContext = resizedCanvas.getContext("2d");              
-                resizedCanvas.height = "500";
-                resizedCanvas.width = "500";              
-                resizedContext.drawImage(canvas, 0, 0, 500, 500);
-                croppedImage.src = resizedCanvas.toDataURL("image/png");  
+        var resizedCanvas = document.createElement("canvas");
+        var resizedContext = resizedCanvas.getContext("2d");              
+        resizedCanvas.height = "500";
+        resizedCanvas.width = "500";              
+        resizedContext.drawImage(canvas, 0, 0, 500, 500);
+        croppedImage.src = resizedCanvas.toDataURL("image/png");  
         image.setAttribute(
           "data-cropdata",
           JSON.stringify(cropper.getCropBoxData())
@@ -230,7 +230,7 @@
                       }
                       ).then(function(response){     
                         addCookieItem(order_id,6,40,'Photos Carrées (5cm x 5cm)')
-                        document.getElementById('btnredirect').setAttribute('href',`https://pixy.ma/${id}/ajoutercarre/`)
+                        document.getElementById('btnredirect').setAttribute('href',`https://pixy.ma/${order_id}/ajoutercarre/`)
                         $('#uploadModal').modal('hide')
                         $('#addModal').modal('show')
                       })
