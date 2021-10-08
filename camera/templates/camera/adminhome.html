@@ -26,7 +26,7 @@
                     <th style="width: 15%">Numéro</th>
                     <th style="width: 15%">Etat</th>                    
                     <th style="width: 20%">Date</th>  
-                    <th style="width: 30%" >Télephone</th> 
+                    <th style="width: 30%" >prix</th> 
                     <th style="width: 20%" >Action</th> 
 
                   </tr>
@@ -38,8 +38,8 @@
                   <td>{{ order.id }}</td>   
                   <td>{{ order.complete }}</td>                  
                   <td>{{ order.date_ordered|date:"d/m/Y, H:i" }}</td>  
-                  <td>{{ order.tel }}</td>   
-                  <td><a href="{% url 'adminorder' order.id %}" class="btn btn-info" >Voir</a></td>   
+                  <td>{{ order.prix }}</td>   
+                  <td><a href="{% url 'adminpanier' order.id %}" class="btn btn-info" >Voir</a></td>   
                 </tr>
         
                 {% endfor %}

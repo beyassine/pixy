@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required
 from .serializers import *
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
@@ -113,26 +114,35 @@ def addbig(request,pk):
     order=Commande.objects.get(id=pk)
     return render(request,'camera/addbig.html',{'order_id':order.id,'nbre':order.nbre,'prix':order.prix})
 
-def upsell(request,pk):
-    order=Commande.objects.get(id=pk)
-    return render(request,'camera/upsell.html',{'order_id':order.id,'typec':order.typec})
-
-
 def commande(request,pk):
     order=Commande.objects.get(id=pk)
     return render(request,'camera/order.html',{'order_id':order.id,'nbre':order.nbre,'prix':order.prix})
 
+# ADIMINISTARTEUR
 
+@login_required
 def adminhome(request):
-    orders=Commande.objects.all().order_by('-id')
+    orders=Panier.objects.all().order_by('-id')
     return render(request,'camera/adminhome.html',{'orders':orders})
 
+@login_required
+def panierdetail(request,pk):
+    panier=Panier.objects.get(id=pk)
+    orders=panier.commande.all()
+    return render(request,'camera/panierdetail.html',{'panier':panier,'orders':orders})
+
+@login_required
 def orderdetail(request,pk):
+    ids=[]
     order=Commande.objects.get(id=pk)
+    typec=order.typec
     images=Photo.objects.filter(commande__id=order.id)
-    return render(request,'camera/orderdetail.html',{'order':order,'images':images})
+    for image in images :
+        ids.append(image.id)
 
+    return render(request,'camera/orderdetail.html',{'order':order,'images':images,'ids':ids,'typec':typec})
 
+@login_required
 def downloadimage(request,pk):
     photo=Photo.objects.get(id=pk)
     #open Image
@@ -171,33 +181,41 @@ def concat_tile_resize(im_list_2d, interpolation=cv2.INTER_CUBIC):
     im_list_v = [hconcat_resize_min(im_list_h, interpolation=cv2.INTER_CUBIC) for im_list_h in im_list_2d]
     return vconcat_resize_min(im_list_v, interpolation=cv2.INTER_CUBIC)
 
-def downlaodalbum(request,pk):
-    order=Commande.objects.get(id=pk)
-    photos=Photo.objects.filter(commande__id=order.id)
-    i=1
-    for photo in photos:
-        #open Image
-        im_pil=Image.open(photo.image)
-
-        #Convert img to array
-        img_cv=np.array(im_pil)
-        
-        #edit image        
-        
-        if i == 1 :
-            img1=editimage(img_cv)
-        elif i == 2 :
-            img2=editimage(img_cv)
-        elif i == 3 :
-            img3=editimage(img_cv)
-        elif i == 4 :
-            img4=editimage(img_cv)
-        elif i == 5 :
-            img5=editimage(img_cv)
-        elif i == 6 :
-            img6=editimage(img_cv)
-        i=i+1
+def downlaodalbumsquare(request,pk):
     
+    photo1=Photo.objects.get(id=pk)
+    im_pil=Image.open(photo1.image)
+    img_cv=np.array(im_pil)
+    img1=editimage(img_cv)
+
+    photo2=Photo.objects.get(id=pk+1)
+    im_pil=Image.open(photo2.image)
+    img_cv=np.array(im_pil)
+    img2=editimage(img_cv)
+
+    photo3=Photo.objects.get(id=pk+2)
+    im_pil=Image.open(photo3.image)
+    img_cv=np.array(im_pil)
+    img3=editimage(img_cv)
+
+    photo4=Photo.objects.get(id=pk+3)
+    im_pil=Image.open(photo4.image)
+    img_cv=np.array(im_pil)
+    img4=editimage(img_cv)
+
+    photo5=Photo.objects.get(id=pk+4)
+    im_pil=Image.open(photo5.image)
+    img_cv=np.array(im_pil)
+    img5=editimage(img_cv)
+
+    photo6=Photo.objects.get(id=pk+5)
+    im_pil=Image.open(photo6.image)
+    img_cv=np.array(im_pil)
+    img6=editimage(img_cv)
+
+
+
+
     im_tile= concat_tile_resize([
     [img1,img2,img3],
     [img4,img5,img6],
@@ -211,5 +229,39 @@ def downlaodalbum(request,pk):
     im_pil.save(buffer,format='png')
     image_png=buffer.getvalue()
     response = HttpResponse(image_png, content_type='image/png')
+    filename=f'image-{pk}.png'
+    content = "attachement; filename=%s" %(filename)
+    response['Content-Disposition'] = content
+
+    return response
+
+def downlaodalbumrectangle(request,pk):
+
+    photo1=Photo.objects.get(id=pk)
+    im_pil=Image.open(photo1.image)
+    img_cv=np.array(im_pil)
+    img1=editimage(img_cv)
+
+    photo2=Photo.objects.get(id=pk+1)
+    im_pil=Image.open(photo2.image)
+    img_cv=np.array(im_pil)
+    img2=editimage(img_cv)
+
+    im_tile= concat_tile_resize([
+    [img1],
+    [img2],
+    ])
+
+    #convert back to pil image
+    im_pil=Image.fromarray(im_tile)
+
+    #show image
+    buffer=BytesIO()
+    im_pil.save(buffer,format='png')
+    image_png=buffer.getvalue()
+    response = HttpResponse(image_png, content_type='image/png')
+    filename=f'image-{pk}.png'
+    content = "attachement; filename=%s" %(filename)
+    response['Content-Disposition'] = content
 
     return response

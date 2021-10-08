@@ -24,20 +24,16 @@ window.addEventListener("DOMContentLoaded", function () {
           image.onload = function (imageEvent) {
               // Resize the image
               var canvas = document.createElement('canvas'),
-                  max_size = 500,// TODO : pull max size from a site config
+                  max_size = 700,// TODO : pull max size from a site config
                   width = image.width,
                   height = image.height;
-              if (width > height) {
-                  if (width > max_size) {
-                      height *= max_size / width;
-                      width = max_size;
+                  if (width > height) {
+                    height *= max_size / width;
+                    width = max_size;
+                  } else {
+                    width *= max_size / height;
+                    height = max_size;
                   }
-              } else {
-                  if (height > max_size) {
-                      width *= max_size / height;
-                      height = max_size;
-                  }
-              }
               canvas.width = width;
               canvas.height = height;
               canvas.getContext('2d').drawImage(image, 0, 0, width, height);
@@ -74,22 +70,16 @@ window.addEventListener("DOMContentLoaded", function () {
           image.onload = function (imageEvent) {
               // Resize the image
               var canvas = document.createElement('canvas'),
-                  max_size = 500,// TODO : pull max size from a site config
+                  max_size = 700,// TODO : pull max size from a site config
                   width = image.width,
                   height = image.height;
-              if (width > height) {
-                  console.log('paysage')
-                  if (width > max_size) {
-                      height *= max_size / width;
-                      width = max_size;
+                  if (width > height) {
+                    height *= max_size / width;
+                    width = max_size;
+                  } else {
+                    width *= max_size / height;
+                    height = max_size;
                   }
-              } else {
-                  if (height > max_size) {
-                    console.log('portrait')
-                      width *= max_size / height;
-                      height = max_size;
-                  }
-              }
               canvas.width = width;
               canvas.height = height;
               canvas.getContext('2d').drawImage(image, 0, 0, width, height);
@@ -124,20 +114,16 @@ window.addEventListener("DOMContentLoaded", function () {
           image.onload = function (imageEvent) {
               // Resize the image
               var canvas = document.createElement('canvas'),
-                  max_size = 500,// TODO : pull max size from a site config
+                  max_size = 700,// TODO : pull max size from a site config
                   width = image.width,
                   height = image.height;
-              if (width > height) {
-                  if (width > max_size) {
-                      height *= max_size / width;
-                      width = max_size;
+                  if (width > height) {
+                    height *= max_size / width;
+                    width = max_size;
+                  } else {
+                    width *= max_size / height;
+                    height = max_size;
                   }
-              } else {
-                  if (height > max_size) {
-                      width *= max_size / height;
-                      height = max_size;
-                  }
-              }
               canvas.width = width;
               canvas.height = height;
               canvas.getContext('2d').drawImage(image, 0, 0, width, height);
@@ -173,20 +159,16 @@ window.addEventListener("DOMContentLoaded", function () {
           image.onload = function (imageEvent) {
               // Resize the image
               var canvas = document.createElement('canvas'),
-                  max_size = 500,// TODO : pull max size from a site config
+                  max_size = 700,// TODO : pull max size from a site config
                   width = image.width,
                   height = image.height;
-              if (width > height) {
-                  if (width > max_size) {
-                      height *= max_size / width;
-                      width = max_size;
+                  if (width > height) {
+                    height *= max_size / width;
+                    width = max_size;
+                  } else {
+                    width *= max_size / height;
+                    height = max_size;
                   }
-              } else {
-                  if (height > max_size) {
-                      width *= max_size / height;
-                      height = max_size;
-                  }
-              }
               canvas.width = width;
               canvas.height = height;
               canvas.getContext('2d').drawImage(image, 0, 0, width, height);
@@ -221,20 +203,16 @@ window.addEventListener("DOMContentLoaded", function () {
           image.onload = function (imageEvent) {
               // Resize the image
               var canvas = document.createElement('canvas'),
-                  max_size = 500,// TODO : pull max size from a site config
+                  max_size = 700,// TODO : pull max size from a site config
                   width = image.width,
                   height = image.height;
-              if (width > height) {
-                  if (width > max_size) {
-                      height *= max_size / width;
-                      width = max_size;
+                  if (width > height) {
+                    height *= max_size / width;
+                    width = max_size;
+                  } else {
+                    width *= max_size / height;
+                    height = max_size;
                   }
-              } else {
-                  if (height > max_size) {
-                      width *= max_size / height;
-                      height = max_size;
-                  }
-              }
               canvas.width = width;
               canvas.height = height;
               canvas.getContext('2d').drawImage(image, 0, 0, width, height);
@@ -269,19 +247,15 @@ window.addEventListener("DOMContentLoaded", function () {
           image.onload = function (imageEvent) {
               // Resize the image
               var canvas = document.createElement('canvas'),
-                  max_size = 500,// TODO : pull max size from a site config
+                  max_size = 700,// TODO : pull max size from a site config
                   width = image.width,
                   height = image.height;
               if (width > height) {
-                  if (width > max_size) {
-                      height *= max_size / width;
-                      width = max_size;
-                  }
+                height *= max_size / width;
+                width = max_size;
               } else {
-                  if (height > max_size) {
-                      width *= max_size / height;
-                      height = max_size;
-                  }
+                width *= max_size / height;
+                height = max_size;
               }
               canvas.width = width;
               canvas.height = height;

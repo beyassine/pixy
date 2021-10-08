@@ -1,0 +1,83 @@
+{% extends "camera/adminbase.html"%} 
+{% load static %}
+
+{% block head %}
+{% endblock head %} 
+
+{% block content %}
+
+<!-- ======= Breadcrumbs Section ======= -->
+<section class="breadcrumbs">
+    <div class="container">
+      <div class="d-flex justify-content-between align-items-center">
+        <h2>Administrateur</h2>        
+      </div>
+    </div>
+</section>
+<!-- End Breadcrumbs Section -->
+
+<!-- ======= Features Section ======= -->
+<section id="features" class="features">
+    <div class="container">
+        <div class="row">
+            <table class="table table-bordered"  width="100%" cellspacing="0">
+                <tbody>
+                 <tr>
+                  <td>Numéro :{{ panier.id }}</td> 
+                  </tr>
+                  <tr>
+                    <td>Prix :{{ panier.prix }}</td> 
+                  </tr>
+                  <tr>  
+                  <td>Nom Prénom : {{ panier.nom }}</td>      
+                  </tr>
+                  <tr>            
+                  <td>Télephone : {{ panier.tel }}</td>
+                  </tr>
+                  <tr>
+                  <td>Adresse : {{ panier.adresse }}</td>   
+                  </tr>
+                  <tr>
+                  <td>Ville : {{ panier.ville }}</td>   
+                  </tr>
+                  <tr>
+                    <td>Ville : {{ panier.ville }}</td>    
+                  </tr>
+                  <tr>
+                    <td>Date : {{ order.date_ordered|date:"d/m/Y, H:i" }}</td>    
+                  </tr>
+          </tbody>
+        </div>
+        <div class="row">
+            <table class="table table-bordered"  width="100%" cellspacing="0">
+                <thead>
+                  <tr>
+                    <th style="width: 15%">Numéro</th>
+                    <th style="width: 55%">Type</th>                    
+                    <th style="width: 10%">nbre</th>  
+                    <th style="width: 20%" >Action</th> 
+
+                  </tr>
+                </thead>
+        
+                <tbody>
+                 {% for order in orders %}
+                 <tr>
+                  <td>{{ order.id }}</td>   
+                  <td>{{ order.typec }}</td>                  
+                  <td>{{ order.nbre }}</td>   
+                  <td><a href="{% url 'adminorder' order.id %}" class="btn btn-info" >Voir</a></td>   
+                </tr>
+        
+                {% endfor %}
+          </tbody>
+        </div>
+    </div>
+</section><!-- End Features Section -->
+
+
+  
+{% endblock content %}
+
+{% block foot %}
+{% endblock foot %}

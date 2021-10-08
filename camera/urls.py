@@ -21,10 +21,13 @@ urlpatterns = [
     path('<int:pk>/ajouterrect/', views.addrect, name="addrect"),
     path('nouveaugrand/', views.newbig, name="newbig"),
     path('<int:pk>/ajoutergrand/', views.addbig, name="addbig"),
-    path('<int:pk>/ajouter/', views.upsell, name="upsell"),    
     path('<int:pk>/commande/', views.commande, name="order"),    
+    
+    # ADMINISTRATEUR
     path('administrateur/', views.adminhome, name="adminhome"),    
+    path('administrateur/<int:pk>/panier/', views.panierdetail, name="adminpanier"),
     path('administrateur/<int:pk>/commande/', views.orderdetail, name="adminorder"),
     path('administrateur/<int:pk>/downloadimage/', views.downloadimage, name="downloadimage"),
-    path('administrateur/<int:pk>/downloadalbum/', views.downlaodalbum, name="downlaodalbum"),
+    path('administrateur/<int:pk>/downloadalbumsquare/', views.downlaodalbumsquare, name="downlaodalbumsquare"),
+    path('administrateur/<int:pk>/downloadalbumrectangle/', views.downlaodalbumrectangle, name="downlaodalbumrectangle"),
 ]

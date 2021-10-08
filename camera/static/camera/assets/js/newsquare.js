@@ -131,9 +131,9 @@
         const canvas = this.cropper.getCroppedCanvas(); 
                 var resizedCanvas = document.createElement("canvas");
                 var resizedContext = resizedCanvas.getContext("2d");              
-                resizedCanvas.height = "500";
-                resizedCanvas.width = "500";              
-                resizedContext.drawImage(canvas, 0, 0, 500, 500);
+                resizedCanvas.height = "700";
+                resizedCanvas.width = "700";              
+                resizedContext.drawImage(canvas, 0, 0, 700, 700);
                 croppedImage.src = resizedCanvas.toDataURL("image/png");  
         image.setAttribute(
           "data-cropdata",
@@ -183,9 +183,9 @@
             const canvas = this.cropper.getCroppedCanvas(); 
                 var resizedCanvas = document.createElement("canvas");
                 var resizedContext = resizedCanvas.getContext("2d");              
-                resizedCanvas.height = "500";
-                resizedCanvas.width = "500";              
-                resizedContext.drawImage(canvas, 0, 0, 500, 500);
+                resizedCanvas.height = "700";
+                resizedCanvas.width = "700";              
+                resizedContext.drawImage(canvas, 0, 0, 700, 700);
                 croppedImage.src = resizedCanvas.toDataURL("image/png");            
                 
           },

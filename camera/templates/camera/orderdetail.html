@@ -20,49 +20,80 @@
 <section id="features" class="features">
     <div class="container">
         <div class="row">
-            <table class="table table-bordered"  width="100%" cellspacing="0">                
-        
+            <table class="table table-bordered"  width="100%" cellspacing="0">          
                 <tbody>
                 <tr>
-                  <td>Num: {{ order.id }}</td> 
-                </tr>
-                <tr> 
-                  <td>Etat: {{ order.complete }}</td>  
-                </tr>
-                <tr>                 
-                  <td>Date: {{ order.date_ordered|date:"d/m/Y, H:i" }}</td>  
+                  <td>{{ order.id }}</td>   
                 </tr>
                 <tr>
-                  <td>Téléphone: {{ order.tel }}</td>   
+                  <td>{{ order.typec }}</td> 
                 </tr>
                 <tr>
-                  <td>Ville: {{ order.ville }}</td>   
-                </tr>
+                  <td>{{ order.nbre }}</td>
+                </tr> 
                 <tr>
-                  <td>Adresse: {{ order.adresse }}</td>
-                </tr>
-                <tr>
-                  <td>Photos : <a href="{% url 'downlaodalbum' order.id %}" target="_blank" class="btn btn-info" >Télécharger</a>
-                  </td>   
-                </tr>
-                
-                {% for image in images %}
-                <tr>
-                  <td>
-                  <img src="{{image.image_url}}" >
-                  <a href="{% url 'downloadimage' image.id %}" target="_blank" class="btn btn-info" >Télécharger</a>
+                  <td id="downloadid">
                   </td> 
-                </tr>
-                {% endfor %}
-                
+                </tr>   
           </tbody>
         </div>
     </div>
 </section><!-- End Features Section -->
 
+{{ids|json_script:"ids" }}
+
+{{typec|json_script:"typec" }}
 
   
 {% endblock content %}
 
 {% block foot %}
+<script>
+  ids = JSON.parse(document.getElementById('ids').textContent); 
+  typec = JSON.parse(document.getElementById('typec').textContent); 
+  console.log(ids)
+  console.log(typec)
+  td=document.getElementById('downloadid')
+
+  if (typec == 'Photos Carrées (5cm x 5cm)'){
+    for ( let i=0; i<ids.length; i++){    
+    
+    if(i % 6 == 0 ){
+      var str=` {% url 'downlaodalbumsquare' 1 %}`.replace('1',ids[i]);
+    var a=document.createElement('a')
+    a.setAttribute('href',str)
+    a.setAttribute('target','_blank')
+    a.setAttribute('class','btn btn-info mr-2')
+    a.innerHTML='Télecharger'
+
+    td.appendChild(a)
+      
+    }
+    
+    }
+    
+  }else{
+    for ( let i=0; i<ids.length; i++){    
+    
+    if(i % 2 == 0){
+      var str=` {% url 'downlaodalbumrectangle' 1 %}`.replace('1',ids[i]);
+    var a=document.createElement('a')
+    a.setAttribute('href',str)
+    a.setAttribute('target','_blank')
+    a.setAttribute('class','btn btn-info mr-2')
+    a.innerHTML='Télecharger'
+
+    td.appendChild(a)
+      
+    }
+    
+    }
+
+  }
+
+  
+</script>
+
+
+
 {% endblock foot %}
