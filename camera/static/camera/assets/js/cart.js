@@ -88,6 +88,7 @@ function confirm(){
      
     }
     var tel = document.getElementById('input_tel').value
+    var tel=tel.replace(/ /g,'')
     if (tel == ''){
       document.getElementById('validate_tel').innerHTML=`<p class='text-xs font-weight-bold text-danger text-uppercase '> Veuillez renseigner votre numéro de téléphone</p>`
       return false;

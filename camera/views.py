@@ -11,7 +11,6 @@ import cv2
 from io import BytesIO
 import numpy as np
 from .utils import editimage
-
 # API
 
 @api_view(['GET'])
@@ -41,6 +40,20 @@ def createphoto(request):
         serializer.save()
 
     return Response(serializer.data)
+
+@api_view(['POST'])
+def updatephoto(request,pk):
+    photo=Photo.objects.get(id=pk)
+    
+    parser_classes = (parsers.MultiPartParser, parsers.FormParser)
+
+    serializer = PhotoSerializer(instance=photo, data=request.data, partial=True)
+
+    if serializer.is_valid():
+        serializer.save()
+
+    return Response(serializer.data)
+
 
 
 
@@ -212,9 +225,6 @@ def downlaodalbumsquare(request,pk):
     im_pil=Image.open(photo6.image)
     img_cv=np.array(im_pil)
     img6=editimage(img_cv)
-
-
-
 
     im_tile= concat_tile_resize([
     [img1,img2,img3],

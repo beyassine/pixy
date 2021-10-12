@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from .models import *
-
+from .utils import resizeimage
 
 class Base64ImageField(serializers.ImageField):
 
@@ -20,6 +20,10 @@ class Base64ImageField(serializers.ImageField):
             # Try to decode the file. Return validation error if it fails.
             try:
                 decoded_file = base64.b64decode(data)
+
+                #Resize image
+                decoded_file=resizeimage(decoded_file)
+                
             except TypeError:
                 self.fail('invalid_image')
 
@@ -30,6 +34,8 @@ class Base64ImageField(serializers.ImageField):
             file_extension = self.get_file_extension(file_name, decoded_file)
 
             complete_file_name = "%s.%s" % (file_name, file_extension, )
+
+            
 
             data = ContentFile(decoded_file, name=complete_file_name)
 
@@ -51,7 +57,7 @@ class PhotoSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Photo
-        fields = ("id",'commande','image')
+        fields = ("id",'image','datacrop')
 
 
 
@@ -59,7 +65,21 @@ class CommandeSerializer(serializers.ModelSerializer):
    
     class Meta:
         model = Commande
-        fields = '__all__'
+        fields = ('id', 'listphoto', 'typec', 'prix', 'nbre')
+
+    def create(self, validated_data):
+
+        instance = Commande.objects.create(**validated_data)
+
+        if (validated_data['listphoto'] != ''):
+
+            listphoto = validated_data['listphoto'].split('/')
+
+            for i in listphoto:
+                if (i != ''):
+                    c = Photo.objects.get(id=int(i))
+                    instance.photo.add(c)
+        return instance
 
 class PanierSerializer(serializers.ModelSerializer):
    

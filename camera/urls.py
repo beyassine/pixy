@@ -7,6 +7,7 @@ urlpatterns = [
     path('api/<int:pk>/getphoto/', views.getphoto, name="getphoto"),
     path('api/<int:pk>/getorder/', views.getorder, name="getorder"),
     path('api/createphoto/', views.createphoto, name="createphoto"),
+    path('api/<int:pk>/updatephoto/', views.updatephoto, name="updatephoto"),
     path('api/createcommande/', views.createcommande, name="createcommande"),
     path('api/<int:pk>/updatecommande/', views.updatecommande, name="updatecommande"),
     path('api/createpanier/', views.createpanier, name="createpanier"),

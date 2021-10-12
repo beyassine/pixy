@@ -1,6 +1,7 @@
 import cv2
 import numpy as np
-
+from PIL import Image
+import io
 
 def rect_with_rounded_corners(image, r, t, c):
     """
@@ -55,8 +56,33 @@ def editimage(image):
     edited_img=cv2.detailEnhance(image, sigma_s=1, sigma_r=0.15)
     return edited_img
 
-def editimage1(image):
-    edited_img = cv2.resize(image,None,fx=1.5,fy=1.5)
-    edited_img=cv2.detailEnhance(edited_img, sigma_s=1, sigma_r=0.15)
-    edited_img=rect_with_rounded_corners(edited_img, 100, 5, (255, 255, 255))
-    return edited_img
+def resizeimage(image):
+
+    im_pil=Image.open(io.BytesIO(image))
+    img_cv=np.array(im_pil)
+    
+    h, w = img_cv.shape[:2]
+
+    if h > w :
+        if h > 2024:
+            scale = 1024 / h
+        else:
+            scale = 1
+    else :
+        if w> 1024 :
+            scale = 1024 / w
+        else:
+            scale = 1
+
+    height= int(h * scale)
+    width = int(w *scale)
+    dim = (width, height)
+    resized_img = cv2.resize(img_cv, dim, interpolation = cv2.INTER_AREA)
+
+    im_pil=Image.fromarray(resized_img)
+
+    buffer=io.BytesIO()
+    im_pil.save(buffer,format='png')
+    resized_img=buffer.getvalue()
+
+    return resized_img

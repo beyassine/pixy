@@ -2,16 +2,13 @@
 {% load static %}
  {% block head %}
 
-
-{% endblock head %} 
-
-{% block content %}
+{% endblock head %} {% block content %}
 
 <!-- ======= Breadcrumbs Section ======= -->
 <section class="breadcrumbs">
   <div class="container">
     <div class="d-flex justify-content-between align-items-center">
-      <h2>Boite Photos Grand Format (15cm x 10cm)</h2>
+      <h2>Boite Photos Carrées (5cm x 5cm)</h2>
     </div>
   </div>
 </section>
@@ -27,13 +24,15 @@
     <div class="row no-gutters">
       {% csrf_token %}
       <div class="col-lg-4 col-md-4 border-0">
-        <div class="card"  style="border: none;margin: 3px;">
+        <div  id="imagebox_1" style="display: none"></div>
+        <div class="card" style="border: none;margin: 3px;">
           <div id="btngrp_1"></div>          
           <input class="file_upload" type="file" id="input_1" accept="image/png, image/gif, image/jpeg" />
           <img id="imgcropped_1" src="{% static 'camera/assets/img/void-1.png'%}" style="border-radius: 7%; border: 2px solid grey" class="card-img-top shadow" />
         </div>
       </div>
       <div class="col-lg-4 col-md-4 border-0">
+        <div id="imagebox_2" style="display: none"></div>
         <div class="card"  style="border: none;margin: 3px;">
           <div id="btngrp_2"></div>
           <input class="file_upload" type="file" id="input_2" accept="image/png, image/gif, image/jpeg" />
@@ -41,6 +40,7 @@
         </div>
       </div>
       <div class="col-lg-4 col-md-4 border-0">
+        <div id="imagebox_3" style="display: none"></div>
         <div class="card"  style="border: none;margin: 3px;">
           <div id="btngrp_3"></div>
           <input class="file_upload" type="file" id="input_3" accept="image/png, image/gif, image/jpeg" />
@@ -48,6 +48,7 @@
         </div>
       </div>
       <div class="col-lg-4 col-md-4 border-0">
+        <div id="imagebox_4" style="display: none"></div>
         <div class="card"  style="border: none;margin: 3px;">
           <div id="btngrp_4"></div>
           <input class="file_upload" type="file" id="input_4" accept="image/png, image/gif, image/jpeg" />
@@ -55,6 +56,7 @@
         </div>
       </div>
       <div class="col-lg-4 col-md-4 border-0">
+        <div id="imagebox_5" style="display: none"></div>
         <div class="card"  style="border: none;margin: 3px;">
           <div id="btngrp_5"></div>
           <input class="file_upload" type="file" id="input_5" accept="image/png, image/gif, image/jpeg" />
@@ -62,10 +64,59 @@
         </div>
       </div>
       <div class="col-lg-4 col-md-3 border-4">
+        <div id="imagebox_6" style="display: none"></div>
         <div class="card"  style="border: none;margin: 3px;">
           <div id="btngrp_6"></div>
           <input class="file_upload" type="file" id="input_6" accept="image/png, image/gif, image/jpeg" />
           <img id="imgcropped_6" src="{% static 'camera/assets/img/void-6.png'%}" style="border-radius: 7%; border: 2px solid grey" class="card-img-top shadow" />
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-3 border-4">
+        <div id="imagebox_7" style="display: none"></div>
+        <div class="card"  style="border: none;margin: 3px;">
+          <div id="btngrp_7"></div>
+          <input class="file_upload" type="file" id="input_7" accept="image/png, image/gif, image/jpeg" />
+          <img id="imgcropped_7" src="{% static 'camera/assets/img/void-6.png'%}" style="border-radius: 7%; border: 2px solid grey" class="card-img-top shadow" />
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-3 border-4">
+        <div id="imagebox_8" style="display: none"></div>
+        <div class="card"  style="border: none;margin: 3px;">
+          <div id="btngrp_8"></div>
+          <input class="file_upload" type="file" id="input_8" accept="image/png, image/gif, image/jpeg" />
+          <img id="imgcropped_8" src="{% static 'camera/assets/img/void-6.png'%}" style="border-radius: 7%; border: 2px solid grey" class="card-img-top shadow" />
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-3 border-4">
+        <div id="imagebox_9" style="display: none"></div>
+        <div class="card"  style="border: none;margin: 3px;">
+          <div id="btngrp_9"></div>
+          <input class="file_upload" type="file" id="input_9" accept="image/png, image/gif, image/jpeg" />
+          <img id="imgcropped_9" src="{% static 'camera/assets/img/void-6.png'%}" style="border-radius: 7%; border: 2px solid grey" class="card-img-top shadow" />
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-3 border-4">
+        <div id="imagebox_10" style="display: none"></div>
+        <div class="card"  style="border: none;margin: 3px;">
+          <div id="btngrp_10"></div>
+          <input class="file_upload" type="file" id="input_10" accept="image/png, image/gif, image/jpeg" />
+          <img id="imgcropped_10" src="{% static 'camera/assets/img/void-6.png'%}" style="border-radius: 7%; border: 2px solid grey" class="card-img-top shadow" />
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-3 border-4">
+        <div id="imagebox_11" style="display: none"></div>
+        <div class="card"  style="border: none;margin: 3px;">
+          <div id="btngrp_11"></div>
+          <input class="file_upload" type="file" id="input_11" accept="image/png, image/gif, image/jpeg" />
+          <img id="imgcropped_11" src="{% static 'camera/assets/img/void-6.png'%}" style="border-radius: 7%; border: 2px solid grey" class="card-img-top shadow" />
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-3 border-4">
+        <div id="imagebox_12" style="display: none"></div>
+        <div class="card"  style="border: none;margin: 3px;">
+          <div id="btngrp_12"></div>
+          <input class="file_upload" type="file" id="input_12" accept="image/png, image/gif, image/jpeg" />
+          <img id="imgcropped_12" src="{% static 'camera/assets/img/void-6.png'%}" style="border-radius: 7%; border: 2px solid grey" class="card-img-top shadow" />
         </div>
       </div>
       <div class="col-lg-12 border-0">
@@ -81,6 +132,25 @@
   </div>
 </section>
 
+<div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true" >
+  <div class="modal-dialog" role="document">
+    <div class="modal-content border-0">
+      <div class="modal-body" style="background-color: grey">
+        <div id="modalBox">
+          <div id="imgcontainer" style="max-height:400px; width: 100%;"></div>
+          <div class="row mt-2">
+            <div class="col text-center">
+              <button type="button" class="btn btn-success border border-secondary btn-lg" data-dismiss="modal" aria-label="Close" >
+                <span aria-hidden="true">Valider</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <div class="modal" id='uploadModal' data-keyboard="false"  data-backdrop="static" tabindex="-1" role="dialog">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -95,13 +165,13 @@
     <div class="modal-content">
       <div class="modal-body">                
         <p class="text-center text-uppercase"> <img src="{% static 'camera/assets/img/discount.png' %}"><br>
-          AJOUTER 6 PHOTOS Grand Format (15cm x 10cm) Á SEULEMENT <span class="text-danger h4" ><strong>100 DH</strong></span> 
+          AJOUTER 6 PHOTOS Carrées (5cm x 5cm) Á SEULEMENT <span class="text-danger h4" ><strong>40 DH</strong></span> 
         </p>
       </div>
       <div class="modal-footer">
-        <a class="btn btn-warning btn-lg text-white" id="btnredirect">AJOUTER 6 PHOTOS </a><hr>
+        <a class="btn btn-warning btn-lg text-white" id="btnredirect">AJOUTER 6 PHOTOS </a><hr><br>
         <a class="btn btn-success btn-lg text-white mt-2 text-uppercase " href="{% url 'produit'%}">créer une NOUVELLE BOITE </a>
-        <a class="btn btn-info btn-lg text-white mt-4 " href="{% url 'cart'%}">CONTINUER VERS PANIER </a>
+        <a class="btn btn-info btn-lg text-white mt-2 " href="{% url 'cart'%}">CONTINUER VERS PANIER </a>
       </div>
     </div>
   </div>

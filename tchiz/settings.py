@@ -154,6 +154,7 @@ AUTH_USER_MODEL = 'camera.User'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
+TEMP = os.path.join(BASE_DIR, 'media/temp')
 CRISPY_TEMPLATE_PACK='bootstrap4'
 
 #Upload max size

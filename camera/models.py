@@ -12,8 +12,21 @@ class User(AbstractUser):
     def __str__(self):
         return f'{self.email}'
 
+        
+class Photo(models.Model):
+    image = models.ImageField(upload_to='magnets_photos')
+    datacrop= models.CharField(max_length=1000, default='', verbose_name='crop')   
 
-class Commande(models.Model):
+    def image_url(self):
+        return self.image.url
+
+    def __str__(self):
+        return f'{self.id}'
+
+
+class Commande(models.Model):    
+    photo=models.ManyToManyField(Photo,default='',verbose_name='photo')
+    listphoto= models.CharField(max_length=1000, default='', verbose_name='listphoto')
     typec = models.CharField(max_length=100, default='', verbose_name='Type')   
     prix = models.DecimalField(max_digits=9, decimal_places=2)
     date_ordered = models.DateTimeField(default=timezone.now)
@@ -23,15 +36,6 @@ class Commande(models.Model):
         return f'{self.id}'
 
 
-class Photo(models.Model):
-    commande = models.ForeignKey(Commande, on_delete=models.CASCADE,default='', verbose_name="commande")
-    image = models.ImageField(upload_to='magnets_photos')
-
-    def image_url(self):
-        return self.image.url
-
-    def __str__(self):
-        return f'{self.id}'
 
 
 class Panier(models.Model):

@@ -35,6 +35,8 @@
     right: 7%;
   }
   .btn2 {
+    border: 1px solid black;
+    background-color: rgb(252, 252, 252);
     position: absolute;
     z-index: 1;
     top: 28%;
