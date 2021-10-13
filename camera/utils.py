@@ -59,7 +59,21 @@ def editimage(image):
 def resizeimage(image):
 
     im_pil=Image.open(io.BytesIO(image))
+    exif = im_pil._getexif()
+    orientation_key = 274 # cf ExifTags
+    if exif and orientation_key in exif:
+        orientation = exif[orientation_key]
+        rotate_values = {
+            3: Image.ROTATE_180,
+            6: Image.ROTATE_270,
+            8: Image.ROTATE_90
+        }
+        if orientation in rotate_values:
+            im_pil = im_pil.transpose(rotate_values[orientation])
+
+
     img_cv=np.array(im_pil)
+
     
     h, w = img_cv.shape[:2]
 
