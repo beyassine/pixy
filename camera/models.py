@@ -2,6 +2,8 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.utils import timezone
 from PIL import Image
+import uuid 
+
 
 
 class User(AbstractUser):

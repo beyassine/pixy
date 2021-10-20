@@ -28,14 +28,7 @@ function getCookie(name){
 
   function addCookieItem(id,qte,prix,typec){
 
-    if (cart[id] == undefined){
-        
-      cart[id] = {'quantite' : qte , 'prix' : prix ,'typec':typec}
-    }else{
-      cart[id]['quantite'] += qte
-      cart[id]['prix'] += prix
-
-    }
+    cart[id] = {'quantite' : qte , 'prix' : prix ,'typec':typec}
 
     document.cookie = 'cart=' + JSON.stringify(cart) + `;domain=;path=/` 
   }

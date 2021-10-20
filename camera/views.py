@@ -109,27 +109,51 @@ def cart(request):
 def newsquare(request):
     return render(request, 'camera/newsquare.html')
 
-def addsquare(request,pk):
-    order=Commande.objects.get(id=pk)
-    return render(request,'camera/addsquare.html',{'order_id':order.id,'nbre':order.nbre,'prix':order.prix})
+def addsquare(request):
+    return render(request,'camera/addsquare.html')
+
+def updatesquare(request):
+
+    pk=request.GET.get('order_id', None)   
+    nbre=request.GET.get('nbre', None)   
+    if Commande.objects.filter(id=pk).exists():
+        order=Commande.objects.get(id=pk)
+        photos = order.photo.all()
+        serializer = PhotoSerializer(photos, many=True,)
+        if int(nbre) == 6 and order.nbre == 6 :
+            return render(request,'camera/updatesquare6.html',{'order_id':order.id,'photos':serializer.data})
+        elif int(nbre) == 12 and order.nbre == 12 :
+            return render(request,'camera/updatesquare12.html',{'order_id':order.id,'photos':serializer.data})
+        else:
+            return redirect('home')
+    else:
+        return redirect('home')
+
 
 def newrect(request):
     return render(request, 'camera/newrect.html')
 
-def addrect(request,pk):
-    order=Commande.objects.get(id=pk)
-    return render(request,'camera/addrect.html',{'order_id':order.id,'nbre':order.nbre,'prix':order.prix})
+def addrect(request):
+    return render(request,'camera/addrect.html')
 
-def newbig(request):
-    return render(request, 'camera/newbig.html')
+def updaterect(request):
 
-def addbig(request,pk):
-    order=Commande.objects.get(id=pk)
-    return render(request,'camera/addbig.html',{'order_id':order.id,'nbre':order.nbre,'prix':order.prix})
+    pk=request.GET.get('order_id', None)   
+    nbre=request.GET.get('nbre', None)   
+    if Commande.objects.filter(id=pk).exists():
+        order=Commande.objects.get(id=pk)
+        photos = order.photo.all()
+        serializer = PhotoSerializer(photos, many=True,)
+        if int(nbre) == 4 and order.nbre == 4 :
+            return render(request,'camera/updaterect4.html',{'order_id':order.id,'photos':serializer.data})
+        elif int(nbre) == 8 and order.nbre==8 :
+            return render(request,'camera/updaterect8.html',{'order_id':order.id,'photos':serializer.data})
+        else:
+            return redirect('home')
+    else:
+        return redirect('home')
 
-def commande(request,pk):
-    order=Commande.objects.get(id=pk)
-    return render(request,'camera/order.html',{'order_id':order.id,'nbre':order.nbre,'prix':order.prix})
+
 
 # ADIMINISTARTEUR
 

@@ -20,40 +20,43 @@ function construct(cart){
         for (var key of Object.keys(cart)) {  
             listcommande += `${key}/`
             td1=document.createElement('td')
-            td1.setAttribute('style','"width: 65%')
+            td1.setAttribute('style','width: 56%')
             td1.innerHTML=cart[key]['quantite'] + ' ' + cart[key]['typec']
     
             td2=document.createElement('td')
-            td2.setAttribute('style','"width: 33%')
+            td2.setAttribute('style','width: 40%')
             td2.innerHTML=cart[key]['prix'] + ' DH'
     
             td3=document.createElement('td')
-            td3.setAttribute('style','"width: 2%')
-            td3.addEventListener("click",show.bind(this,key))
-            td3.innerHTML=`<i class='bx bx-trash text-info'></i>`
+            td3.setAttribute('style','width: 2%')
+            a=document.createElement('a')
+            if(cart[key]['typec'] == 'Photos Carrees (5cm x 5cm)'){
+              url=`https://pixy.ma/carre/modifier?order_id=${key}&nbre=${cart[key]['quantite']}`
+            }else{
+              url=`https://pixy.ma/rect/modifier?order_id=${key}&nbre=${cart[key]['quantite']}`
+            }
+            
+            a.setAttribute('href',url)
+            a.innerHTML=`<i class='bx bx-edit text-info'></i>`
+            td3.appendChild(a)
+
+            td4=document.createElement('td')
+            td4.setAttribute('style','width: 2%')
+            td4.addEventListener("click",show.bind(this,key))
+            td4.innerHTML=`<i class='bx bx-trash text-info'></i>`
     
             tr = document.createElement('tr')
             tr.appendChild(td1)
             tr.appendChild(td2)
-            tr.appendChild(td3)        
+            tr.appendChild(td3)   
+            tr.appendChild(td4)        
     
             p.appendChild(tr)
     
             total+= parseInt(cart[key]['prix'])
           
         }
-    
-        if (total< 300){
             document.getElementById('total_produit').innerHTML=`${total.toFixed(2)}`
-            document.getElementById('total_livraison').innerHTML=`40 DH`
-            total += 40
-            document.getElementById('total_payer').innerHTML=`${total.toFixed(2)}`
-        }else{
-            $('#alert').addClass("hidden")
-            document.getElementById('total_produit').innerHTML=`${total.toFixed(2)}`
-            document.getElementById('total_livraison').innerHTML=`<h5 class='text-warning'><strong>Gratuit</strong></h5>`
-            document.getElementById('total_payer').innerHTML=`${total.toFixed(2)}`
-        }
     
     
     }

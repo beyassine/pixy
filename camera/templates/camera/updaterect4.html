@@ -1,17 +1,14 @@
-
 {% extends "camera/base.html"%} 
 {% load static %}
  {% block head %}
 
-{% endblock head %}
-
-{% block content %}
+{% endblock head %} {% block content %}
 
 <!-- ======= Breadcrumbs Section ======= -->
 <section class="breadcrumbs">
   <div class="container">
     <div class="d-flex justify-content-between align-items-center">
-      <h2>Photos Réctangulaires (10cm x 7cm)</h2>
+      <h2>Boite Photos Carrées (5cm x 5cm)</h2>
     </div>
   </div>
 </section>
@@ -22,18 +19,20 @@
   <div class="container">
     <div class="section-title">
       <h2></h2>
-      <p>Sélectionnez vos photos</p>
+      <p>Ajouter vos photos</p>
     </div>
     <div class="row no-gutters">
       {% csrf_token %}
       <div class="col-lg-4 col-md-4 border-0">
-        <div class="card"  style="border: none;margin: 3px;">
+        <div  id="imagebox_1" style="display: none"></div>
+        <div class="card" style="border: none;margin: 3px;">
           <div id="btngrp_1"></div>          
           <input class="file_upload" onchange="uploadImage(1)" type="file" id="input_1" accept="image/png, image/gif, image/jpeg" />
           <img id="imgcropped_1" src="{% static 'camera/assets/img/void.png'%}" style="border-radius: 7%; border: 2px solid grey" class="card-img-top shadow" />
         </div>
       </div>
       <div class="col-lg-4 col-md-4 border-0">
+        <div id="imagebox_2" style="display: none"></div>
         <div class="card"  style="border: none;margin: 3px;">
           <div id="btngrp_2"></div>
           <input class="file_upload" onchange="uploadImage(2)" type="file" id="input_2" accept="image/png, image/gif, image/jpeg" />
@@ -41,6 +40,7 @@
         </div>
       </div>
       <div class="col-lg-4 col-md-4 border-0">
+        <div id="imagebox_3" style="display: none"></div>
         <div class="card"  style="border: none;margin: 3px;">
           <div id="btngrp_3"></div>
           <input class="file_upload" onchange="uploadImage(3)" type="file" id="input_3" accept="image/png, image/gif, image/jpeg" />
@@ -48,38 +48,11 @@
         </div>
       </div>
       <div class="col-lg-4 col-md-4 border-0">
+        <div id="imagebox_4" style="display: none"></div>
         <div class="card"  style="border: none;margin: 3px;">
           <div id="btngrp_4"></div>
           <input class="file_upload" onchange="uploadImage(4)" type="file" id="input_4" accept="image/png, image/gif, image/jpeg" />
           <img id="imgcropped_4" src="{% static 'camera/assets/img/void.png'%}" style="border-radius: 7%; border: 2px solid grey" class="card-img-top shadow" />
-        </div>
-      </div>
-      <div class="col-lg-4 col-md-4 border-0">
-        <div class="card"  style="border: none;margin: 3px;">
-          <div id="btngrp_5"></div>
-          <input class="file_upload" onchange="uploadImage(5)" type="file" id="input_5" accept="image/png, image/gif, image/jpeg" />
-          <img id="imgcropped_5" src="{% static 'camera/assets/img/void.png'%}" style="border-radius: 7%; border: 2px solid grey" class="card-img-top shadow" />
-        </div>
-      </div>
-      <div class="col-lg-4 col-md-3 border-4">
-        <div class="card"  style="border: none;margin: 3px;">
-          <div id="btngrp_6"></div>
-          <input class="file_upload" onchange="uploadImage(6)" type="file" id="input_6" accept="image/png, image/gif, image/jpeg" />
-          <img id="imgcropped_6" src="{% static 'camera/assets/img/void.png'%}" style="border-radius: 7%; border: 2px solid grey" class="card-img-top shadow" />
-        </div>
-      </div>
-      <div class="col-lg-4 col-md-3 border-4">
-        <div class="card"  style="border: none;margin: 3px;">
-          <div id="btngrp_7"></div>
-          <input class="file_upload" onchange="uploadImage(7)" type="file" id="input_7" accept="image/png, image/gif, image/jpeg" />
-          <img id="imgcropped_7" src="{% static 'camera/assets/img/void.png'%}" style="border-radius: 7%; border: 2px solid grey" class="card-img-top shadow" />
-        </div>
-      </div>
-      <div class="col-lg-4 col-md-3 border-4">
-        <div class="card"  style="border: none;margin: 3px;">
-          <div id="btngrp_8"></div>
-          <input class="file_upload" onchange="uploadImage(8)" type="file" id="input_8" accept="image/png, image/gif, image/jpeg" />
-          <img id="imgcropped_8" src="{% static 'camera/assets/img/void.png'%}" style="border-radius: 7%; border: 2px solid grey" class="card-img-top shadow" />
         </div>
       </div>
       <div class="col-lg-12 border-0">
@@ -94,7 +67,6 @@
     </div>
   </div>
 </section>
-
 <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true" >
   <div class="modal-dialog" role="document">
     <div class="modal-content border-0">
@@ -113,6 +85,7 @@
     </div>
   </div>
 </div>
+
 <div class="modal" id='uploadModal' data-keyboard="false"  data-backdrop="static" tabindex="-1" role="dialog">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -131,7 +104,20 @@
     </div>
   </div>
 </div>
-<div class="modal " id='bigsizeModal' tabindex="-1" role="dialog">
+<div class="modal " id='errorModal' data-keyboard="false"  data-backdrop="static" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content ">
+      <div class="modal-body">
+        <p  class="text-center"> <img src="{% static 'camera/assets/img/broken.png' %}"><br> Oups! Une erreur s'est produite ...</p>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-success btn-lg text-white mt-2 text-uppercase " href="{% url 'produit'%}">créer une NOUVELLE BOITE </a>
+        <a class="btn btn-info btn-lg text-white mt-2 " href="{% url 'cart'%}">CONTINUER VERS PANIER </a>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal " id='bigsizeModal' data-keyboard="false"  data-backdrop="static" tabindex="-1" role="dialog">
   <div class="modal-dialog" role="document">
     <div class="modal-content ">
       <div class="modal-body">
@@ -141,27 +127,27 @@
         <button type="button" class="btn btn-secondary btn-lg " data-dismiss="modal">Fermer</button>
       </div>
     </div>
+    </div>
   </div>
 </div>
 <div class="modal "  id="addModal" data-keyboard="false"  data-backdrop="static" tabindex="-1" role="dialog">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-body">                
-        <p class="text-center text-uppercase"> <img src="{% static 'camera/assets/img/discount.png' %}"><br>
-          AJOUTER 4 PHOTOS Rectangulaires (10cm x 7cm) Á SEULEMENT <span class="text-danger h4" ><strong>40 DH</strong></span> 
+        <p class="text-center text-uppercase"> <img src="{% static 'camera/assets/img/success.png' %}"><br>
+         vos photos sont modifiés avec success 
         </p>
       </div>
       <div class="modal-footer">
-        <a class="btn btn-warning btn-lg text-white text-uppercase" id="btnredirect">AJOUTER 4 PHOTOS </a><hr>
-        <a class="btn btn-success btn-lg text-white mt-2 text-uppercase " href="{% url 'produit'%}">créer une NOUVELLE BOITE </a>
-        <a class="btn btn-info btn-lg text-white mt-4 " href="{% url 'cart'%}">CONTINUER VERS PANIER </a>
+        <a class="btn btn-info btn-lg text-white mt-2 " href="{% url 'cart'%}">CONTINUER VERS PANIER </a>
       </div>
     </div>
   </div>
-</div>
+{{order_id|json_script:"order_id" }}
+{{photos|json_script:"photos" }}
 {% endblock content %} 
 {% block foot %}
-<script src="{% static 'camera/assets/js/newrect.js'%}"></script>
+<script src="{% static 'camera/assets/js/updaterect4.js'%}"></script>
 
 
 {% endblock foot %}

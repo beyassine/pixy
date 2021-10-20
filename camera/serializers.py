@@ -81,6 +81,21 @@ class CommandeSerializer(serializers.ModelSerializer):
                     instance.photo.add(c)
         return instance
 
+    def update(self,instance, validated_data):
+
+        instance.photo.clear()
+        instance.listphoto = validated_data['listphoto']
+
+        if (validated_data['listphoto'] != ''):
+
+            listphoto = validated_data['listphoto'].split('/')
+
+            for i in listphoto:
+                if (i != ''):
+                    c = Photo.objects.get(id=int(i))
+                    instance.photo.add(c)
+        return instance
+
 class PanierSerializer(serializers.ModelSerializer):
    
     class Meta:

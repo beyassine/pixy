@@ -1,15 +1,29 @@
+const order_id = JSON.parse(document.getElementById('order_id').textContent); 
+const photos = JSON.parse(document.getElementById('photos').textContent); 
+e= document.getElementById('listphotos')
+var url1 = "https://pixy.ma/api/createphoto/";
 const imgcontainer = document.getElementById("imgcontainer");
 const csrf = document.getElementsByName("csrfmiddlewaretoken");
 var num_input = 0;
-var url1 = "https://pixy.ma/api/createphoto/";
+
 
 window.addEventListener("DOMContentLoaded", function () {
-  console.log(cart)
-  if (Object.keys(cart).length == 0){
-    $('#errorModal').modal('show')     
-}
-});
+  if (Object.keys(cart).includes(order_id.toString())){
+    $('#uploadimageModal').modal('show')  
+  for(let i = 0; i < photos.length ; i++) {
+    imagebox=document.getElementById(`imagebox_${i+1}`)
+    imagebox.innerHTML = `<img src="${photos[i]['image']}" id='image_${i+1}' data-id='${photos[i]['id']}' data-crop='${photos[i]['datacrop']}' class="imgsrc img-fluid" alt="Responsive image">`;
+    displayImage(i+1)
+    addinput()
+  }
 
+  $('#uploadimageModal').modal('hide')     
+}
+else{  
+  $('#errorModal').modal('show')
+} 
+});
+  
 /* return null if invalid or base64String if valid */
 function isImageSizeValid(image){
   var startIndex = image.indexOf("base64,") + 7;
@@ -21,8 +35,43 @@ function isImageSizeValid(image){
   return base64str
 }
 
+function displayImage(p){
+  $(`#input_${p}`).attr("disabled", true)
+  var croppedImage = document.getElementById(`imgcropped_${p}`);
+  var image = document.getElementById(`image_${p}`);
+  var $image = $(`#image_${p}`);
+  var datacrop= JSON.parse(image.getAttribute('data-crop'))
+  $image.cropper({
+    aspectRatio: 9 / 9,
+    cropBoxResizable: false,
+    ready: function () {
+      //Should set crop box data first here
+      cropper.setData(datacrop)
+    },
+    crop: function (event) {
+      const canvas = this.cropper.getCroppedCanvas(); 
+      var resizedCanvas = document.createElement("canvas");
+      var resizedContext = resizedCanvas.getContext("2d");              
+      resizedCanvas.height = "1024";
+      resizedCanvas.width = "1024";              
+      resizedContext.drawImage(canvas, 0, 0, 1024, 1024);
+      croppedImage.src = resizedCanvas.toDataURL("image/png");          
+    },
+  });
+
+  var cropper = $image.data("cropper");
+    var btngrp = document.getElementById(`btngrp_${p}`);
+    btngrp.innerHTML = `
+      <button class="btn btn1" name="edit" class="btn btn-sm btn-outline-secondary shadow-lg" data-id='${p}'
+      data-target="#modal" data-toggle="modal" onclick="showmodal(${p})"><i class="fas fa-crop-alt fa-2x"></i></button>
+
+      <button class="btn btn2" name="delete" class="btn btn-sm btn-outline-secondary shadow-lg" onclick="deleteimage(${p})"><i class="fas fa-trash-alt fa-2x"></i></button>`;
+      
+
+}
 
 function showmodal(p) {
+
   var src = $(`#image_${p}`).attr("src");
   imgcontainer.innerHTML =
     '<img id="modalimage" src="" class="img-fluid">';
@@ -42,7 +91,7 @@ function deleteimage(p){
 
 function addinput(){
   num_input += 1
-  if(num_input == 6){
+  if(num_input == 12){
     $('#confirm_btn').removeClass('disabled')
   }
 }
@@ -61,7 +110,7 @@ function cropImage(p){
       resizedCanvas.height = "1024";
       resizedCanvas.width = "1024";              
       resizedContext.drawImage(canvas, 0, 0, 1024, 1024);
-      croppedImage.src = resizedCanvas.toDataURL("image/png");        
+      croppedImage.src = resizedCanvas.toDataURL("image/png");    
       $('#uploadimageModal').modal('hide')
       image.setAttribute(
         "data-cropdata",
@@ -129,7 +178,7 @@ function editImage(p, src) {
           myimage.setAttribute(
                 "data-crop",
                 JSON.stringify(cropper.getData())
-          );          
+          );           
         },
       });
       var cropper = $image.data("cropper");
@@ -138,6 +187,8 @@ function editImage(p, src) {
       imgcontainer.innerHTML = "";
     });
 }
+
+
 
 function uploadImage(p){
   var input=document.getElementById(`input_${p}`)
@@ -150,16 +201,14 @@ function uploadImage(p){
     }else{
     $('#uploadimageModal').modal('show')
     $(`#input_${p}`).attr("disabled", true)
-  var reader = new FileReader();
-  reader.onload = function (readerEvent) {
-
+    var reader = new FileReader();
+    reader.onload = function (readerEvent) {
     base64ImageString=isImageSizeValid(reader.result);
     var requestData = {
       "csrfmiddlewaretoken":csrf[0].value,
       "image": base64ImageString,
       'datacrop':'',
     }
-
     $.ajax({
       type: 'POST',
       dataType: "json",
@@ -179,11 +228,12 @@ function uploadImage(p){
 
 }
 
+
 function confirm() {
-  if (num_input == 6) {
+  if (num_input == 12) {
     var listphoto=''
     $('#uploadModal').modal('show')
-    for (let i = 1; i < 7; i++) {
+    for (let i = 1; i < 13; i++) {
       var id=parseInt(document.getElementById(`image_${i}`).getAttribute('data-id'))
       listphoto += `${id}/`
       const fd = new FormData();
@@ -201,7 +251,7 @@ function confirm() {
         processData: false,
       });
     }
-    var url2=`https://pixy.ma/api/createcommande/`
+    var url2=`https://pixy.ma/api/${order_id}/updatecommande/`
           fetch(url2, {
           method:'POST',
           headers:{
@@ -210,21 +260,15 @@ function confirm() {
           },
           body:JSON.stringify({ 
           "listphoto":listphoto,
-          "typec":'Photos Carrées (5cm x 5cm)',
-          'nbre':6,
-          'prix':50,
         })
         }
         ).then((resp) => resp.json())
-        .then(function(data){                 
-          var id1 = data['id']
-          addCookieItem(id1,6,40,'Photos Carrees (5cm x 5cm)')
-          document.getElementById('btnredirect').setAttribute('href',`https://pixy.ma/carre/ajouter/`)
+        .then(function(data){             
           $('#uploadModal').modal('hide')
           $('#addModal').modal('show')
         })
 
   }else(
-    alert('Complétez 6 photos pour continuer !')
+    alert('Complétez 12 photos pour continuer !')
   )
 }
