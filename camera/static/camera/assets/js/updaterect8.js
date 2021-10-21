@@ -70,6 +70,7 @@ function uploadImage(p){
       var requestData = {
         "csrfmiddlewaretoken":csrf[0].value,
         "image": base64ImageString,
+        "origin": base64ImageString,
         'datacrop':'',
       }
       $.ajax({

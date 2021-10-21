@@ -10,7 +10,7 @@ from PIL import Image
 import cv2
 from io import BytesIO
 import numpy as np
-from .utils import editimage
+from .utils import editimage,editimagesquare
 # API
 
 @api_view(['GET'])
@@ -129,7 +129,6 @@ def updatesquare(request):
     else:
         return redirect('home')
 
-
 def newrect(request):
     return render(request, 'camera/newrect.html')
 
@@ -152,8 +151,6 @@ def updaterect(request):
             return redirect('home')
     else:
         return redirect('home')
-
-
 
 # ADIMINISTARTEUR
 
@@ -221,34 +218,34 @@ def concat_tile_resize(im_list_2d, interpolation=cv2.INTER_CUBIC):
 def downlaodalbumsquare(request,pk):
     
     photo1=Photo.objects.get(id=pk)
-    im_pil=Image.open(photo1.image)
+    im_pil=Image.open(photo1.origin)
     img_cv=np.array(im_pil)
-    img1=editimage(img_cv)
+    img1=editimagesquare(img_cv,photo1.datacrop)
 
     photo2=Photo.objects.get(id=pk+1)
-    im_pil=Image.open(photo2.image)
+    im_pil=Image.open(photo2.origin)
     img_cv=np.array(im_pil)
-    img2=editimage(img_cv)
+    img2=editimagesquare(img_cv,photo2.datacrop)
 
     photo3=Photo.objects.get(id=pk+2)
-    im_pil=Image.open(photo3.image)
+    im_pil=Image.open(photo3.origin)
     img_cv=np.array(im_pil)
-    img3=editimage(img_cv)
+    img3=editimagesquare(img_cv,photo3.datacrop)
 
     photo4=Photo.objects.get(id=pk+3)
-    im_pil=Image.open(photo4.image)
+    im_pil=Image.open(photo4.origin)
     img_cv=np.array(im_pil)
-    img4=editimage(img_cv)
+    img4=editimagesquare(img_cv,photo4.datacrop)
 
     photo5=Photo.objects.get(id=pk+4)
-    im_pil=Image.open(photo5.image)
+    im_pil=Image.open(photo5.origin)
     img_cv=np.array(im_pil)
-    img5=editimage(img_cv)
+    img5=editimagesquare(img_cv,photo5.datacrop)
 
     photo6=Photo.objects.get(id=pk+5)
-    im_pil=Image.open(photo6.image)
+    im_pil=Image.open(photo6.origin)
     img_cv=np.array(im_pil)
-    img6=editimage(img_cv)
+    img6=editimagesquare(img_cv,photo6.datacrop)
 
     im_tile= concat_tile_resize([
     [img1,img2,img3],
@@ -272,12 +269,12 @@ def downlaodalbumsquare(request,pk):
 def downlaodalbumrectangle(request,pk):
 
     photo1=Photo.objects.get(id=pk)
-    im_pil=Image.open(photo1.image)
+    im_pil=Image.open(photo1.origin)
     img_cv=np.array(im_pil)
     img1=editimage(img_cv)
 
     photo2=Photo.objects.get(id=pk+1)
-    im_pil=Image.open(photo2.image)
+    im_pil=Image.open(photo2.origin)
     img_cv=np.array(im_pil)
     img2=editimage(img_cv)
 

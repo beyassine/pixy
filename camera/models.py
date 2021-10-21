@@ -16,6 +16,7 @@ class User(AbstractUser):
 
         
 class Photo(models.Model):
+    origin=models.ImageField(upload_to='magnets_photos',blank=True,)
     image = models.ImageField(upload_to='magnets_photos')
     datacrop= models.CharField(max_length=1000, default='', verbose_name='crop')   
 
