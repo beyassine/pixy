@@ -39,7 +39,7 @@ class resizedBase64ImageField(serializers.ImageField):
 
             data = ContentFile(decoded_file, name=complete_file_name)
 
-        return super(Base64ImageField, self).to_internal_value(data)
+        return super(resizedBase64ImageField, self).to_internal_value(data)
 
     def get_file_extension(self, file_name, decoded_file):
         import imghdr
@@ -100,13 +100,14 @@ class PhotoSerializer(serializers.ModelSerializer):
         max_length=None, use_url=True,
     )
 
-    image = Base64ImageField(
-        max_length=None, use_url=True,
+    origin = Base64ImageField(
+        max_length=None, use_url=True,write_only=True
     )
 
     class Meta:
         model = Photo
         fields = ("id",'origin','image','datacrop')
+    
 
 
 

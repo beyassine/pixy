@@ -1,7 +1,7 @@
 const imgcontainer = document.getElementById("imgcontainer");
 const csrf = document.getElementsByName("csrfmiddlewaretoken");
 var num_input = 0;
-var url1 = "https://pixy.ma/api/createphoto/";
+var url1 = "http://127.0.0.1:8000/api/createphoto/";
 
 /* return null if invalid or base64String if valid */
 function isImageSizeValid(image){
@@ -184,17 +184,18 @@ function confirm() {
       fd.append("datacrop", document.getElementById(`image_${i}`).getAttribute('data-crop'));
       $.ajax({
         type: "POST",
-        url: `https://pixy.ma/api/${id}/updatephoto/`,
+        url: `http://127.0.0.1:8000/api/${id}/updatephoto/`,
         enctype: "multipart/form-data",
         data: fd,
         success: function (response) {
+          console.log(response['datacrop'])
         },        
         cache: false,
         contentType: false,
         processData: false,
       });
     }
-    var url2=`https://pixy.ma/api/createcommande/`
+    var url2=`http://127.0.0.1:8000/api/createcommande/`
           fetch(url2, {
           method:'POST',
           headers:{
@@ -212,7 +213,7 @@ function confirm() {
         .then(function(data){  
           var id1 = data['id']
           addCookieItem(id1,12,120,'Photos Carrees (5cm x 5cm)')
-          document.getElementById('btnredirect').setAttribute('href',`https://pixy.ma/carre/ajouter/`)
+          document.getElementById('btnredirect').setAttribute('href',`http://127.0.0.1:8000/carre/ajouter/`)
           $('#uploadModal').modal('hide')
           $('#addModal').modal('show')
         })
