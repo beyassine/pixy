@@ -100,7 +100,7 @@ class PhotoSerializer(serializers.ModelSerializer):
         max_length=None, use_url=True,
     )
 
-    image = originBase64ImageField(
+    image = Base64ImageField(
         max_length=None, use_url=True,
     )
 
