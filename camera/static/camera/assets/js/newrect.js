@@ -1,7 +1,7 @@
 const imgcontainer = document.getElementById("imgcontainer");
 const csrf = document.getElementsByName("csrfmiddlewaretoken");
 var num_input = 0;
-var url1 = "http://127.0.0.1:8000/api/createphoto/";
+var url1 = "https://pixy.ma/api/createphoto/";
 
 /* return null if invalid or base64String if valid */
 function isImageSizeValid(image){
@@ -88,7 +88,7 @@ function confirm() {
       'prix':120,
     }
 
-    var url2=`http://127.0.0.1:8000/api/createcommande/`
+    var url2=`https://pixy.ma/api/createcommande/`
           fetch(url2, {
           method:'POST',
           headers:{
@@ -107,7 +107,7 @@ function confirm() {
           var id1 = data['id']
           console.log(id1)
           addCookieItem(id1,8,120,'Photos Rectangles (10cm x 7cm)')
-          document.getElementById('btnredirect').setAttribute('href',`http://127.0.0.1:8000/rect/ajouter/`)
+          document.getElementById('btnredirect').setAttribute('href',`https://pixy.ma/rect/ajouter/`)
           $('#uploadModal').modal('hide')
           $('#addModal').modal('show')
         })
