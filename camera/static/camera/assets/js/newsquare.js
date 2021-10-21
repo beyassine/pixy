@@ -148,7 +148,6 @@ function uploadImage(p){
     base64ImageString=isImageSizeValid(reader.result);
     var requestData = {
       "csrfmiddlewaretoken":csrf[0].value,
-      "origin": base64ImageString,
       "image": base64ImageString,
       'datacrop':'',
     }
