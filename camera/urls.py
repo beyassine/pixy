@@ -28,6 +28,6 @@ urlpatterns = [
     path('administrateur/<int:pk>/panier/', views.panierdetail, name="adminpanier"),
     path('administrateur/<int:pk>/commande/', views.orderdetail, name="adminorder"),
     path('administrateur/<int:pk>/downloadimage/', views.downloadimage, name="downloadimage"),
-    path('administrateur/<int:pk>/downloadalbumsquare/', views.downlaodalbumsquare, name="downlaodalbumsquare"),
-    path('administrateur/<int:pk>/downloadalbumrectangle/', views.downlaodalbumrectangle, name="downlaodalbumrectangle"),
+    path('administrateur/downloadalbumsquare/', views.downlaodalbumsquare, name="downlaodalbumsquare"),
+    path('administrateur/downloadalbumrect/', views.downlaodalbumrectangle, name="downlaodalbumrectangle"),
 ]

@@ -51,8 +51,6 @@ def rect_with_rounded_corners(image, r, t, c):
     return new_image
 
 def editimagesquare(image,datacrop):
-    if np.size(image, 0) > np.size(image, 1) :
-        image=np.rot90(image)
     data=datacrop.split(',')
     cropX = int(float(str(data[0].split(':')[1])))
     cropY = int(float(str(data[1].split(':')[1])))

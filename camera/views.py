@@ -174,7 +174,7 @@ def orderdetail(request,pk):
     for image in images :
         ids.append(image.id)
 
-    return render(request,'camera/orderdetail.html',{'order':order,'images':images,'ids':ids,'typec':typec})
+    return render(request,'camera/orderdetail.html',{'order':order,'order_id':order.id,'images':images,'ids':ids,'typec':typec})
 
 @login_required
 def downloadimage(request,pk):
@@ -215,34 +215,42 @@ def concat_tile_resize(im_list_2d, interpolation=cv2.INTER_CUBIC):
     im_list_v = [hconcat_resize_min(im_list_h, interpolation=cv2.INTER_CUBIC) for im_list_h in im_list_2d]
     return vconcat_resize_min(im_list_v, interpolation=cv2.INTER_CUBIC)
 
-def downlaodalbumsquare(request,pk):
+def downlaodalbumsquare(request):
+
+    pk=request.GET.get('order_id', None)   
+    i=int(float(str(request.GET.get('i', None))))
+
+
+    order=Commande.objects.get(id=pk)
+
+    listphoto =order.listphoto.split('/')
     
-    photo1=Photo.objects.get(id=pk)
+    photo1=Photo.objects.get(id=int(float(str(listphoto[i]))))
     im_pil=Image.open(photo1.image)
     img_cv=np.array(im_pil)
     img1=editimagesquare(img_cv,photo1.datacrop)
 
-    photo2=Photo.objects.get(id=pk+1)
+    photo2=Photo.objects.get(id=int(float(str(listphoto[i+1]))))
     im_pil=Image.open(photo2.image)
     img_cv=np.array(im_pil)
     img2=editimagesquare(img_cv,photo2.datacrop)
 
-    photo3=Photo.objects.get(id=pk+2)
+    photo3=Photo.objects.get(id=int(float(str(listphoto[i+2]))))
     im_pil=Image.open(photo3.image)
     img_cv=np.array(im_pil)
     img3=editimagesquare(img_cv,photo3.datacrop)
 
-    photo4=Photo.objects.get(id=pk+3)
+    photo4=Photo.objects.get(id=int(float(str(listphoto[i+3]))))
     im_pil=Image.open(photo4.image)
     img_cv=np.array(im_pil)
     img4=editimagesquare(img_cv,photo4.datacrop)
 
-    photo5=Photo.objects.get(id=pk+4)
+    photo5=Photo.objects.get(id=int(float(str(listphoto[i+4]))))
     im_pil=Image.open(photo5.image)
     img_cv=np.array(im_pil)
     img5=editimagesquare(img_cv,photo5.datacrop)
 
-    photo6=Photo.objects.get(id=pk+5)
+    photo6=Photo.objects.get(id=int(float(str(listphoto[i+5]))))
     im_pil=Image.open(photo6.image)
     img_cv=np.array(im_pil)
     img6=editimagesquare(img_cv,photo6.datacrop)
@@ -266,14 +274,20 @@ def downlaodalbumsquare(request,pk):
 
     return response
 
-def downlaodalbumrectangle(request,pk):
+def downlaodalbumrectangle(request):
+    pk=request.GET.get('order_id', None)   
+    i=int(float(str(request.GET.get('i', None))))
 
-    photo1=Photo.objects.get(id=pk)
+    order=Commande.objects.get(id=pk)
+
+    listphoto =order.listphoto.split('/')
+
+    photo1=Photo.objects.get(id=int(float(str(listphoto[i]))))
     im_pil=Image.open(photo1.image)
     img_cv=np.array(im_pil)
     img1=editimage(img_cv)
 
-    photo2=Photo.objects.get(id=pk+1)
+    photo2=Photo.objects.get(id=int(float(str(listphoto[i+1]))))
     im_pil=Image.open(photo2.image)
     img_cv=np.array(im_pil)
     img2=editimage(img_cv)

@@ -42,6 +42,8 @@
 
 {{ids|json_script:"ids" }}
 
+{{order_id|json_script:"order_id" }}
+
 {{typec|json_script:"typec" }}
 
   
@@ -51,17 +53,16 @@
 <script>
   ids = JSON.parse(document.getElementById('ids').textContent); 
   typec = JSON.parse(document.getElementById('typec').textContent); 
-  console.log(ids)
-  console.log(typec)
+  order_id = JSON.parse(document.getElementById('order_id').textContent); 
   td=document.getElementById('downloadid')
 
   if (typec == 'Photos Carrées (5cm x 5cm)'){
     for ( let i=0; i<ids.length; i++){    
     
     if(i % 6 == 0 ){
-      var str=` {% url 'downlaodalbumsquare' 1 %}`.replace('1',ids[i]);
+    var url=`https://pixy.ma/administrateur/downloadalbumsquare?order_id=${order_id}&i=${i}`
     var a=document.createElement('a')
-    a.setAttribute('href',str)
+    a.setAttribute('href',url)
     a.setAttribute('target','_blank')
     a.setAttribute('class','btn btn-info mr-2')
     a.innerHTML='Télecharger'
@@ -76,9 +77,9 @@
     for ( let i=0; i<ids.length; i++){    
     
     if(i % 2 == 0){
-      var str=` {% url 'downlaodalbumrectangle' 1 %}`.replace('1',ids[i]);
+    url=`https://pixy.ma/administrateur/downloadalbumrect?order_id=${order_id}&i=${i}`
     var a=document.createElement('a')
-    a.setAttribute('href',str)
+    a.setAttribute('href',url)
     a.setAttribute('target','_blank')
     a.setAttribute('class','btn btn-info mr-2')
     a.innerHTML='Télecharger'
